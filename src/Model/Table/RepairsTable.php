@@ -7,7 +7,7 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Repair Model
+ * Repairs Model
  *
  * @method \App\Model\Entity\Repair get($primaryKey, $options = [])
  * @method \App\Model\Entity\Repair newEntity($data = null, array $options = [])
@@ -16,8 +16,10 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Repair patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\Repair[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\Repair findOrCreate($search, callable $callback = null)
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class RepairTable extends Table
+class RepairsTable extends Table
 {
 
     /**
@@ -30,9 +32,11 @@ class RepairTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('repair');
+        $this->table('repairs');
         $this->displayField('id');
         $this->primaryKey('id');
+
+        $this->addBehavior('Timestamp');
     }
 
     /**
@@ -48,14 +52,13 @@ class RepairTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->date('date')
-            ->requirePresence('date', 'create')
-            ->notEmpty('date');
-
-        $validator
             ->integer('sereal')
             ->requirePresence('sereal', 'create')
             ->notEmpty('sereal');
+
+        $validator
+            ->requirePresence('token', 'create')
+            ->notEmpty('token');
 
         return $validator;
     }

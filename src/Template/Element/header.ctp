@@ -1,6 +1,5 @@
-<div id="header" class="bg-primary">
+<div id="header">
 	header
 	<br>
 	<br>
 </div>
-<br>

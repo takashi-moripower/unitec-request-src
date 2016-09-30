@@ -52,16 +52,15 @@ $html5Shim = <<<HTML
 HTML;
 $this->prepend('css', $this->Html->css(['//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css']));
 $this->prepend('css', $this->Html->css(['https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css']));
+$this->prepend('css', $this->Html->css('style.css'));
 
 $this->append('css', $html5Shim);
 
 /**
  * Prepend `script` block with jQuery and Bootstrap scripts
  */
-
 $this->prepend('script', $this->Html->script(['https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js']));
-$this->prepend('script', $this->Html->script(['https://code.jquery.com/jquery-2.2.4.min.js', 'footerFixed']));
-
+$this->prepend('script', $this->Html->script(['https://code.jquery.com/jquery-2.2.4.min.js']));
 ?>
 <!DOCTYPE html>
 
@@ -78,16 +77,14 @@ $this->prepend('script', $this->Html->script(['https://code.jquery.com/jquery-2.
 
 </head>
 <body class="<?= $this->_getBodyClass() ?>">
-
-	<?php
-	echo $this->Element('header');
-	echo $this->fetch('tb_flash');
-	echo $this->fetch('content');
-	echo $this->fetch('script');
-	?>
-	<div id="footer" class="bg-primary">
-		footer<br>
-		<br>
+	<div id="wrap">
+		<?php
+		echo $this->Element('header');
+		echo $this->fetch('tb_flash');
+		echo $this->fetch('content');
+		echo $this->fetch('script');
+		echo $this->Element('footer');
+		?>
 	</div>
 </body>
 

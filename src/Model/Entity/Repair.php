@@ -2,13 +2,17 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\ORM\TableRegistry;
+use Cake\I18n\Date;
+
 
 /**
  * Repair Entity
  *
  * @property int $id
- * @property \Cake\I18n\Time $date
  * @property int $sereal
+ * @property string $token
+ * @property \Cake\I18n\Time $created
  */
 class Repair extends Entity
 {
@@ -26,4 +30,26 @@ class Repair extends Entity
         '*' => true,
         'id' => false
     ];
+
+    /**
+     * Fields that are excluded from JSON versions of the entity.
+     *
+     * @var array
+     */
+    protected $_hidden = [
+        'token'
+    ];
+	
+	public function setSereal(){
+		$table_r = TableRegistry::get('repairs');
+		
+		$count = $table_r->find()
+				->where([
+					'created >' => Date::today(),
+					'created <=' => Date::tomorrow(),
+				])
+				->count();
+				
+		$this->sereal = $count;
+	}
 }

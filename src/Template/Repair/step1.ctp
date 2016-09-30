@@ -10,7 +10,7 @@ use App\Defines\Defines;
 
 
 <div class="text-center">
-	<a href="<?= $this->Url->build(['action' => 'step2']) ?>" class="btn btn-lg btn-primary">
+	<a href="<?= $this->Url->build(['action' => 'step2']) ?>" class="my-btn my-btn-primary">
 		<i class="fa fa-caret-right"></i> 合意する
 	</a>	
 </div>

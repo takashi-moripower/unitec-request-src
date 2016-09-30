@@ -14,17 +14,38 @@ $progress = Defines::REPAIR_PROGRESS;
 
 
 $this->start('title');
-echo $progress[$step];
+echo $progress[$step]['label'];
+$this->end();
+$this->append('script');
+?>
+<script>
+	$(function () {
+		$(function () {
+			height = $('#wrap').height() ;
+			if ($('.container').height() < height) {
+				$('.container').height(height);
+			}
+			if ($('.left-nav').outerHeight() < height) {
+				$('.left-nav').outerHeight(height);
+			}
+			if ($('.right-main').outerHeight() < height) {
+				$('.right-main').outerHeight(height);
+			}
+		});
+	});
+</script>
+<?php
 $this->end();
 $this->start('content');
 ?>
 <div class="container">
 	<div class="row">
-		<div class="col-xs-3">
-			<?= $this->Element('repair/navProgress',['step'=>$step]) ?>
+		<div class="col-xs-3 left-nav">
+			<?= $this->Element('repair/navProgress', ['step' => $step]) ?>
 		</div>
-		<div class="col-xs-9">
-			<h1><?= $this->fetch('title') ?></h1>
+		<div class="col-xs-9 right-main">
+			<h1 class="title"><i class="fa fa-fw fa-<?= $progress[$step]['icon']; ?>"></i><?= $this->fetch('title') ?></h1><br>
+
 			<?= $this->fetch('content') ?>
 		</div>
 	</div>
