@@ -1,10 +1,6 @@
 <div class="nav-progress">
 	<?php
 
-	use App\Defines\Defines;
-
-$progress = Defines::REPAIR_PROGRESS;
-
 	foreach ($progress as $item_no => $item):
 		$class = ( $step == $item_no ) ? 'active' : '';
 		?>

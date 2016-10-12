@@ -1,4 +1,5 @@
 <?php
+use App\Defines\Defines;
 $this->append('script');
 echo $this->Html->script('https://yubinbango.github.io/yubinbango/yubinbango.js');
 $this->end();
@@ -59,7 +60,7 @@ $this->Form->templates([
 			</th>
 			<td class="my-form-radio">
 				<?php
-				$access_error = !empty($form->errors()['access']);
+				$access_error = !empty( $form->errors()['access'] );
 				$access_types = [
 					1 => 'メール',
 					2 => '電話',
@@ -122,6 +123,15 @@ $this->Form->templates([
 			</td>
 		</tr>
 		<tr>
+			<th>
+				カテゴリ
+			</th>
+			<td>
+				<?= $this->Form->select('category', Defines::INQUIRY_CATEGORIES ) ?>
+				
+			</td>
+		</tr>
+		<tr>
 			<th class="requied">
 				商品情報
 			</th>
@@ -130,15 +140,6 @@ $this->Form->templates([
 				echo $this->Form->input('product', ['type' => 'fax', 'label' => false, 'class' => '' ]);
 				?>
 				<div class="comment">※ 商品名や型式、JANコードを入力してください。 JANコードとは</div>
-			</td>
-		</tr>
-		<tr>
-			<th>
-				購入日
-			</th>
-			<td>
-				<?= $this->Form->input('date', ['type' => 'date', 'label' => false, 'monthNames' => false, 'templates' => ['dateWidget' => $template_date]]) ?>
-				
 			</td>
 		</tr>
 		<tr>

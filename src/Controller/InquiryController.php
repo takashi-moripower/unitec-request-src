@@ -3,23 +3,23 @@
 namespace App\Controller;
 
 use App\Defines\Defines;
-use App\Form\RepairForm;
+use App\Form\InquiryForm;
 /**
  * Repair Controller
  *
  * @property \App\Model\Table\RepairTable $Repair
  */
-class RepairController  extends BaseController {
+class InquiryController  extends BaseController {
 
 	public function initialize() {
 		parent::initialize();
 		$this->loadComponent('SaveCsv');
-		$this->viewBuilder()->layout('repair');
-		$this->_filePath = Defines::REPAIR_PATH;
+		$this->viewBuilder()->layout('inquiry');
+		$this->_filePath = Defines::INQUIRY_PATH;
 	}
 	
 	protected function _getForm(){
-		return new RepairForm;
+		return new InquiryForm;
 	}
 	
 	

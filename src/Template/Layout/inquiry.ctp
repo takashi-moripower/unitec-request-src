@@ -10,7 +10,7 @@ if (preg_match('/step([0-9])/', $this->getAction(), $match)) {
 	$step = NULL;
 }
 
-$progress = Defines::REPAIR_PROGRESS;
+$progress = Defines::INQUIRY_PROGRESS;
 
 
 $this->start('title');

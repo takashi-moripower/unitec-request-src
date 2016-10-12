@@ -7,8 +7,6 @@ $template_date = '<div>{{year}}　年　{{month}}　月</div>';
 $template_radio = '<input type="radio" name="{{name}}" value="{{value}}"{{attrs}}><div class="my-radio"></div>';
 echo $this->Form->create($form, ['class' => 'h-adr']);
 echo $this->Form->hidden('id',['default'=>$id]);
-
-
 $this->Form->templates([
 	'radio'=>$template_radio
 ]);
@@ -123,27 +121,8 @@ $this->Form->templates([
 		</tr>
 		<tr>
 			<th class="requied">
-				商品情報
-			</th>
-			<td class="product">
-				<?php
-				echo $this->Form->input('product', ['type' => 'fax', 'label' => false, 'class' => '' ]);
-				?>
-				<div class="comment">※ 商品名や型式、JANコードを入力してください。 JANコードとは</div>
-			</td>
-		</tr>
-		<tr>
-			<th>
-				購入日
-			</th>
-			<td>
-				<?= $this->Form->input('date', ['type' => 'date', 'label' => false, 'monthNames' => false, 'templates' => ['dateWidget' => $template_date]]) ?>
-				
-			</td>
-		</tr>
-		<tr>
-			<th class="requied">
-				故障内容
+				連絡メモ<br>
+				200文字以内で入力してください
 			</th>
 			<td>
 				<?= $this->Form->textArea('content'); ?>

@@ -1,5 +1,5 @@
 <div id="header">
-	header
+	<?=$this->Html->link(['Home'],'/') ?>
 	<br>
 	<br>
 </div>

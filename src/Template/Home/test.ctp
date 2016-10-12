@@ -1,1 +1,0 @@
-<?= $this->Html->link('home', ['action'=>'index']) ?>

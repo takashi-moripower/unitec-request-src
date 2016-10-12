@@ -14,7 +14,7 @@ use Cake\I18n\Date;
  * @property string $token
  * @property \Cake\I18n\Time $created
  */
-class Repair extends Entity {
+class BaseEntity extends Entity {
 
 	/**
 	 * Fields that can be mass assigned using newEntity() or patchEntity().
