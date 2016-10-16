@@ -288,7 +288,8 @@ class Defines {
 	const SELL_DATA_EMAIL = 11;
 	const SELL_DATA_CONTENT = 12;
 	
-	const SELL_PATH = '/home/unitec/data/WC/';
+	const SELL_PATH = '/home/unitec/data/WS/';
+	const SELL_PARTS_PATH = '/home/unitec/data/WS/parts/';
 	
 	const DATA_FILE_CATEGORIES = '/home/unitec/data/WS/data/categories.csv';
 	

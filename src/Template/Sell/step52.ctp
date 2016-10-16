@@ -1,4 +1,4 @@
-<ul class="list-01">
+<ul class="my-list1 my-list1-narrow">
 <?php
 
 for($i=1;$i<10;$i++){

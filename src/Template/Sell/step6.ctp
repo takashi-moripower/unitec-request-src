@@ -13,3 +13,5 @@ TEL:0000-00-0000<br>
 <div class="text-center">
 	<a href="<?= $this->Url->build('/') ?>" class="my-btn">戻る</a>
 </div>
+
+

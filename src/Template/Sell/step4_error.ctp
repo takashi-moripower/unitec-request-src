@@ -16,3 +16,6 @@
 		</li>
 	</ul>
 </div>
+<div class="text-center">
+	<a href="<?= $this->Url->build(['action' => 'step3']) ?>" class="my-btn">戻る</a>
+</div>

@@ -14,7 +14,7 @@ class RepairController  extends BaseController {
 	public function initialize() {
 		parent::initialize();
 		$this->loadComponent('SaveCsv');
-		$this->viewBuilder()->layout('repair');
+		$this->viewBuilder()->layout('progress');
 		$this->_filePath = Defines::REPAIR_PATH;
 	}
 	

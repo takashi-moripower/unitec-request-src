@@ -1,24 +1,12 @@
 <?php
+
 use App\Defines\Defines;
 
 $RP = Defines::REPAIR_PROGRESS;
 $title = $RP[$step]['label'];
+
+$this->append('script', $this->Html->script('tableHeight'));
 ?>
-<?php $this->append('script') ?>
-<script>
-	$(function(){
-		$(window).on('load resize', setTableHeight );
-	});
-	
-	function setTableHeight(){
-		td = $('.nav-progress-mobile .icons td');
-		w = td.first().width();
-		if( td.first().height() < w ){
-			td.first().height( w );
-		}
-	}
-</script>
-<?php $this->end() ?>
 <div class="nav-progress-mobile">
 	<div class="head">STEP.<?= $step ?> <div class="title"><?= $title ?></div></div>
 	<table class="icons">
