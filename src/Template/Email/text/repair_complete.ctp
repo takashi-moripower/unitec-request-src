@@ -12,7 +12,8 @@ $access_name = Defines::ACCESS_NAME;
 　この度は修理受付サービスをご利用いただきまして誠にありがとうございます。
 下記の内容で修理受付を承りました。
 
-受付番号　　FR-20160126-001
+受付番号　　<?= $data[Defines::REPAIR_DATA_CODE] ?>
+
 お名前： <?= $data[Defines::REPAIR_DATA_NAME1]?> <?= $data[Defines::REPAIR_DATA_NAME2]?>
 
 ご住所：〒<?= $data[Defines::REPAIR_DATA_POST_CODE]?> <?= $data[Defines::REPAIR_DATA_ADDRESS]?>

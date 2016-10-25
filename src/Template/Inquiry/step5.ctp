@@ -1,5 +1,7 @@
 <?php
+
 use App\Defines\Defines;
+
 $this->append('script');
 echo $this->Html->script('https://yubinbango.github.io/yubinbango/yubinbango.js');
 $this->end();
@@ -7,13 +9,12 @@ $this->end();
 $template_date = '<div>{{year}}　年　{{month}}　月</div>';
 $template_radio = '<input type="radio" name="{{name}}" value="{{value}}"{{attrs}}><div class="my-radio"></div>';
 echo $this->Form->create($form, ['class' => 'h-adr']);
-echo $this->Form->hidden('id',['default'=>$id]);
+echo $this->Form->hidden('id', ['default' => $id]);
 
 
 $this->Form->templates([
-	'radio'=>$template_radio
+	'radio' => $template_radio
 ]);
-
 ?>
 <input type="hidden" class="p-country-name" value="Japan">
 
@@ -60,25 +61,25 @@ $this->Form->templates([
 			</th>
 			<td class="my-form-radio">
 				<?php
-				$access_error = !empty( $form->errors()['access'] );
+				$access_error = !empty($form->errors()['access']);
 				$access_types = [
 					1 => 'メール',
 					2 => '電話',
 					3 => 'FAX'
-				]
+						]
 				?>
 				<div class="form-group <?= $access_error ? 'has-error' : '' ?>">
-					
+
 					<?php
-					echo $this->Form->radio('access', $access_types , ['default'=>1]);
+					echo $this->Form->radio('access', $access_types, ['default' => 1]);
 					?>
-					<?php if(false) : ?>
-					<input type="radio" name="access" id="access-1" value="1" checked="checked" requied="reqied">
-					<label for="access-1">メール</label>
-					<input type="radio" name="access" id="access-2" value="2" requied="reqied">
-					<label for="access-2">電話</label>
-					<input type="radio" name="access" id="access-3" value="3" requied="reqied">
-					<label for="access-3">FAX</label>
+					<?php if (false) : ?>
+						<input type="radio" name="access" id="access-1" value="1" checked="checked" requied="reqied">
+						<label for="access-1">メール</label>
+						<input type="radio" name="access" id="access-2" value="2" requied="reqied">
+						<label for="access-2">電話</label>
+						<input type="radio" name="access" id="access-3" value="3" requied="reqied">
+						<label for="access-3">FAX</label>
 					<?php endif ?>
 					<?php
 					if ($access_error) {
@@ -98,7 +99,7 @@ $this->Form->templates([
 			</th>
 			<td>
 				<?php
-				echo $this->Form->input('email', ['type' => 'email', 'label' => false, 'class' => '' , 'readonly'=>'readonly' , 'value'=>$email]);
+				echo $this->Form->input('email', ['type' => 'email', 'label' => false, 'class' => '', 'readonly' => 'readonly', 'value' => $email]);
 				?>				
 			</td>
 		</tr>
@@ -108,7 +109,7 @@ $this->Form->templates([
 			</th>
 			<td>
 				<?php
-				echo $this->Form->input('tel', ['type' => 'tel', 'label' => false, 'class' => '' ]);
+				echo $this->Form->input('tel', ['type' => 'tel', 'label' => false, 'class' => '']);
 				?>				
 			</td>
 		</tr>
@@ -118,7 +119,7 @@ $this->Form->templates([
 			</th>
 			<td>
 				<?php
-				echo $this->Form->input('fax', ['type' => 'fax', 'label' => false, 'class' => '' ]);
+				echo $this->Form->input('fax', ['type' => 'fax', 'label' => false, 'class' => '']);
 				?>				
 			</td>
 		</tr>
@@ -127,8 +128,8 @@ $this->Form->templates([
 				カテゴリ
 			</th>
 			<td>
-				<?= $this->Form->select('category', Defines::INQUIRY_CATEGORIES ) ?>
-				
+				<?= $this->Form->select('category', Defines::INQUIRY_CATEGORIES) ?>
+
 			</td>
 		</tr>
 		<tr>
@@ -137,17 +138,17 @@ $this->Form->templates([
 			</th>
 			<td class="product">
 				<?php
-				echo $this->Form->input('product', ['type' => 'fax', 'label' => false, 'class' => '' ]);
+				echo $this->Form->input('product', ['type' => 'fax', 'label' => false, 'class' => '']);
 				?>
 				<div class="comment">※ 商品名や型式、JANコードを入力してください。 JANコードとは</div>
 			</td>
 		</tr>
 		<tr>
 			<th class="requied">
-				故障内容
+				お問い合わせ<br>内容
 			</th>
 			<td>
-				<?= $this->Form->textArea('content'); ?>
+				<?= $this->Form->textArea('content',['placeHolder'=>'200文字以内で入力してください']); ?>
 				<br>
 			</td>
 		</tr>

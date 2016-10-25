@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Defines\Defines;
 use App\Form\SellForm;
 use SplFileObject;
+use Cake\ORM\TableRegistry;
 
 /**
  * Repair Controller
@@ -87,16 +88,16 @@ class SellController extends BaseController {
 			$this->Flash->error('invalid access');
 			return $this->redirect('/');
 		}
-		
+
 		$session = $this->request->session();
 		$token = $session->read('sell.token');
 		$data = $this->request->data['sell'];
-		
-		if( !$token || !$this->_checkToken( $token ,false )){
-			$this->render( 'step5_error');
+
+		if (!$token || !$this->_checkToken($token, false)) {
+			$this->render('step5_error');
 			return;
 		}
-		
+
 
 		$parts = [];
 		foreach ($data as $d) {
@@ -115,16 +116,17 @@ class SellController extends BaseController {
 		$data = $session->read('sell.data');
 		$token = $session->read('sell.token');
 
-		if( !$token || !$this->_checkToken( $token ,false )){
-			$this->render( 'step5_error');
+		if (!$token || !$this->_checkToken($token, false)) {
+			$this->render('step5_error');
 			return;
 		}
-		
+
 		$this->_saveData($data);
 		$this->_saveParts($data, $parts);
+		$this->_postComplete($data, $parts);
 
-		$this->_removeToken( $token );
-		$session->write('sell',NULL);
+		$this->_removeToken($token);
+		$session->write('sell', NULL);
 
 		$this->set('code', $code);
 	}
@@ -158,16 +160,33 @@ class SellController extends BaseController {
 			return $this->redirect('/');
 		}
 	}
-	
-	protected function _removeToken( $token ){
+
+	protected function _removeToken($token) {
 		$table = \Cake\ORM\TableRegistry::get('sells');
 		$entity = $table->find()
-				->where(['token'=>$token])
+				->where(['token' => $token])
 				->first();
-		if( $entity ){
+		if ($entity) {
 			$entity->token = NULL;
 			$table->save($entity);
 		}
+	}
+
+	protected function _postComplete($data, $parts) {
+		$emailObj = new \Cake\Network\Email\Email(Defines::MAIL_TEMPLATE_SELL_COMPLETE);
+		$emailObj
+				->viewVars(compact('data', 'parts'))
+				->to($data[Defines::SELL_DATA_EMAIL])
+				->send();
+	}
+	
+	public function debug(){
+		$ne = TableRegistry::get('sells')->newEntity();
+		
+		$this->viewBuilder()->layout('default');
+		
+		$this->set('data',$ne->source());
+		$this->render('/Common/debug');
 	}
 
 }

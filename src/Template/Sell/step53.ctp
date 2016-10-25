@@ -5,11 +5,11 @@
 	<img src="../img/drill.png">
 </div>
 <?= $this->Form->create(NULL, ['url' => $this->Url->build(['action' => 'step59'], 1)]) ?>
-<table class="table table-bordered">
+<table class="table table-bordered table-parts">
 	<thead>
 		<tr>
 			<th>
-
+				
 			</th>
 			<th class="text-center">
 				部品番号
@@ -37,7 +37,7 @@
 			$note = sprintf('備考%02d', $i);
 			?>
 			<tr>
-				<th></th>
+				<th class="check text-center"><i class="fa fa-square-o fa-fw fa-2x"</th>
 				<td><?= $id ?><?= $this->Form->hidden("sell.{$i}.id", ['value' => $id]) ?></td>
 				<td><?= $name ?><?= $this->Form->hidden("sell.{$i}.name", ['value' => $name]) ?></td>
 				<td class="text-right"><?= $cost ?><?= $this->Form->hidden("sell.{$i}.cost", ['value' => $cost]) ?></td>

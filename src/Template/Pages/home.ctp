@@ -8,6 +8,6 @@
 		<?= $this->Html->link('問合せ',['controller'=>'inquiry','action'=>'step0']) ?>
 	</li>
 	<li>
-		<?= $this->Html->link('部品購入（工事中）',['controller'=>'sell','action'=>'step0']) ?>
+		<?= $this->Html->link('部品購入',['controller'=>'sell','action'=>'step0']) ?>
 	</li>
 </ul>

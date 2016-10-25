@@ -14,10 +14,6 @@ use Cake\I18n\Date;
  * @property string $token
  * @property \Cake\I18n\Time $created
  */
-class Inquiry extends Repair {
-	protected function _getCode(){
-		$date_string = $this->created->format('Ymd');
-		$sereal = sprintf( '%03d' , $this->sereal );
-		return "WC-{$date_string}-{$sereal}";
-	}	
+class Inquiry extends BaseEntity {
+	protected $_prefix = "WC";	
 }

@@ -5,8 +5,8 @@ class Defines {
 //--------------------------------------------------------------------------------
 //		共通
 //--------------------------------------------------------------------------------
-//	const TOKEN_TIME_LIMIT = 30;
-	const TOKEN_TIME_LIMIT = 9999;
+	const TOKEN_TIME_LIMIT = 30;
+//	const TOKEN_TIME_LIMIT = 9999;
 	
 	const ACCESS_EMAIL = 1;
 	const ACCESS_TEL = 2;
@@ -42,7 +42,10 @@ class Defines {
 	];
 	const MAIL_TEMPLATE_REPAIR_COMPLETE = self::MAIL_TEMPLATE_BASE + [
 		'template'=>'repairComplete',
-		'subject'=>'修理受付サービス　修理受付完了'
+		'subject'=>'修理受付サービス　修理受付完了',
+//		'bcc' => 'komatsu@unitec-net.co.jp',
+//		複数のBCCを登録する場合は　[]で囲み　, で区切る
+//		'bcc'=>['tsukasa@moripower.jp','takashi@moripower.jp'],
 	];
 	
 	const MAIL_TEMPLATE_INQUIRY_CHECK = self::MAIL_TEMPLATE_BASE + [
@@ -51,7 +54,8 @@ class Defines {
 	];
 	const MAIL_TEMPLATE_INQUIRY_COMPLETE = self::MAIL_TEMPLATE_BASE + [
 		'template'=>'inquiryComplete',
-		'subject'=>'お問合せ受付サービス　お問合せ受付完了'
+		'subject'=>'お問合せ受付サービス　お問合せ受付完了',
+//		'bcc' => 'komatsu@unitec-net.co.jp',
 	];
 	
 	const MAIL_TEMPLATE_SELL_CHECK = self::MAIL_TEMPLATE_BASE + [
@@ -60,7 +64,8 @@ class Defines {
 	];
 	const MAIL_TEMPLATE_SELL_COMPLETE = self::MAIL_TEMPLATE_BASE + [
 		'template'=>'sellComplete',
-		'subject'=>'部品購入受付サービス　部品購入受付完了'
+		'subject'=>'部品購入受付サービス　部品購入受付完了',
+//		'bcc' => 'komatsu@unitec-net.co.jp',
 	];
 	static function getTemplateCheck( $type ){
 
@@ -94,12 +99,12 @@ class Defines {
 			'explain' => 'このページです',
 		],
 		self::REPAIR_PROGRESS_REPAIR_AGREEMENT => [
-			'label' => '修理に関する注意事項の確認',
+			'label' => '修理に関する免責事項の確認',
 			'icon'=>'commenting-o',
-			'explain' => '注意事項を確認していただきます',
+			'explain' => '免責事項を確認していただきます',
 		],
 		self::REPAIR_PROGRESS_PRIVACY_AGREEMENT => [
-			'label' => '個人情報の取扱等の確認',
+			'label' => '個人情報の取り扱いに関するご案内',
 			'icon'=>'user',
 			'explain' => '個人情報取り扱い規約を確認して頂きます',
 		],
@@ -171,7 +176,7 @@ class Defines {
 			'explain' => '注意事項を確認していただきます',
 		],
 		self::INQUIRY_PROGRESS_PRIVACY_AGREEMENT => [
-			'label' => '個人情報の取扱等の確認',
+			'label' => '個人情報の取り扱いに関するご案内',
 			'icon'=>'user',
 			'explain' => '個人情報取り扱い規約を確認して頂きます',
 		],
@@ -243,12 +248,12 @@ class Defines {
 			'explain' => 'このページです',
 		],
 		self::SELL_PROGRESS_SELL_AGREEMENT => [
-			'label' => '部品購入に関する注意事項の確認',
+			'label' => '部品販売に関する免責事項',
 			'icon'=>'commenting-o',
-			'explain' => '注意事項を確認していただきます',
+			'explain' => '免責事項を確認していただきます',
 		],
 		self::SELL_PROGRESS_PRIVACY_AGREEMENT => [
-			'label' => '個人情報の取扱等の確認',
+			'label' => '個人情報の取り扱いに関するご案内',
 			'icon'=>'user',
 			'explain' => '個人情報取り扱い規約を確認して頂きます',
 		],

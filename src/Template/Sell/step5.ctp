@@ -120,12 +120,11 @@ $this->Form->templates([
 			</td>
 		</tr>
 		<tr>
-			<th class="requied">
+			<th class="">
 				連絡メモ<br>
-				200文字以内で入力してください
 			</th>
 			<td>
-				<?= $this->Form->textArea('content'); ?>
+				<?= $this->Form->textArea('content',['placeHolder'=>'200文字以内で入力してください']); ?>
 				<br>
 			</td>
 		</tr>

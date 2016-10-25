@@ -38,23 +38,23 @@ class BaseEntity extends Entity {
 	protected $_hidden = [
 		'token'
 	];
-
+	
 	public function setSereal() {
-		$table_r = TableRegistry::get('repairs');
+		$table = TableRegistry::get( $this->source() );
 
-		$count = $table_r->find()
+		$count = $table->find()
 				->where([
 					'created >' => Date::today(),
 					'created <=' => Date::tomorrow(),
 				])
 				->count();
 
-		$this->sereal = $count;
+		$this->sereal = $count + 1;
 	}
 	
 	protected function _getCode(){
 		$date_string = $this->created->format('Ymd');
 		$sereal = sprintf( '%03d' , $this->sereal );
-		return "WR-{$date_string}-{$sereal}";
+		return $this->_prefix."-{$date_string}-{$sereal}";
 	}
 }

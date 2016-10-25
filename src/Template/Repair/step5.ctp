@@ -146,7 +146,7 @@ $this->Form->templates([
 				故障内容
 			</th>
 			<td>
-				<?= $this->Form->textArea('content'); ?>
+				<?= $this->Form->textArea('content',['placeHolder'=>'200文字以内で入力してください']); ?>
 				<br>
 			</td>
 		</tr>
