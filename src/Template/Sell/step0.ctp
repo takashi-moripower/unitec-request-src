@@ -3,7 +3,7 @@ use App\Defines\Defines;
 ?>
 <ol class="step-explain">
 	<?php 
-	foreach( Defines::REPAIR_PROGRESS as $item ){
+	foreach( Defines::SELL_PROGRESS as $item ){
 		echo "<li><div class='title'>{$item['label']}</div><div class='explain'>{$item['explain']}</div></li>";
 	}
 	?>
