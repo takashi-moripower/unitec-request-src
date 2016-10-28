@@ -217,6 +217,9 @@ class Defines {
 	const INQUIRY_DATA_CONTENT = 12;
 	const INQUIRY_DATA_PRODUCT = 13;
 	const INQUIRY_DATA_CATEGORY = 14;
+	const INQUIRY_DATA_BLANK1 = 15;
+	const INQUIRY_DATA_BLANK2 = 16;
+	
 	
 	const INQUIRY_CATEGORIES = [
 		1 => '大工道具・作業工具・園芸用品に関するお問い合わせ',
@@ -292,6 +295,11 @@ class Defines {
 	const SELL_DATA_FAX = 10;
 	const SELL_DATA_EMAIL = 11;
 	const SELL_DATA_CONTENT = 12;
+	const SELL_DATA_BLANK1 = 13;
+	const SELL_DATA_BLANK2 = 14;
+	const SELL_DATA_BLANK3 = 15;
+	const SELL_DATA_BLANK4 = 16;
+	
 	
 	const SELL_PATH = '/home/unitec/data/WS/';
 	const SELL_PARTS_PATH = '/home/unitec/data/WS/parts/';

@@ -38,11 +38,11 @@
 			?>
 			<tr>
 				<th class="check text-center"><i class="fa fa-square-o fa-fw fa-2x"</th>
-				<td><?= $id ?><?= $this->Form->hidden("sell.{$i}.id", ['value' => $id]) ?></td>
-				<td><?= $name ?><?= $this->Form->hidden("sell.{$i}.name", ['value' => $name]) ?></td>
-				<td class="text-right"><?= $cost ?><?= $this->Form->hidden("sell.{$i}.cost", ['value' => $cost]) ?></td>
-				<td><?= $this->Form->select("sell.{$i}.count", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],['class'=>'count']) ?></td>
-				<td><?= $note ?><?= $this->Form->hidden("sell.{$i}.note", ['value' => $note]) ?></td>
+				<td><?= $id ?><?= $this->Form->hidden("parts.{$i}.id", ['value' => $id]) ?></td>
+				<td><?= $name ?><?= $this->Form->hidden("parts.{$i}.name", ['value' => $name]) ?></td>
+				<td class="text-right"><?= $cost ?><?= $this->Form->hidden("parts.{$i}.cost", ['value' => $cost]) ?></td>
+				<td><?= $this->Form->select("parts.{$i}.count", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],['class'=>'count']) ?></td>
+				<td><?= $note ?><?= $this->Form->hidden("parts.{$i}.note", ['value' => $note]) ?></td>
 			</tr>
 		<?php endfor ?>
 	</tbody>

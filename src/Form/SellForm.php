@@ -95,6 +95,10 @@ class SellForm extends BaseForm {
 			Defines::SELL_DATA_FAX => $data['fax'],
 			Defines::SELL_DATA_EMAIL => $data['email'],
 			Defines::SELL_DATA_CONTENT => $data['content'],
+			Defines::SELL_DATA_BLANK1 => '',
+			Defines::SELL_DATA_BLANK2 => '',
+			Defines::SELL_DATA_BLANK3 => '',
+			Defines::SELL_DATA_BLANK4 => '',
 		];
 
 		return $result;

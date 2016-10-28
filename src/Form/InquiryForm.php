@@ -98,6 +98,8 @@ class InquiryForm extends BaseForm {
 			Defines::INQUIRY_DATA_CONTENT => $data['content'],
 			Defines::INQUIRY_DATA_PRODUCT => $data['product'],
 			Defines::INQUIRY_DATA_CATEGORY => $data['category'],
+			Defines::INQUIRY_DATA_BLANK1 => '',
+			Defines::INQUIRY_DATA_BLANK2 => '',
 		];
 
 		return $result;

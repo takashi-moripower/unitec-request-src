@@ -91,23 +91,25 @@ class SellController extends BaseController {
 
 		$session = $this->request->session();
 		$token = $session->read('sell.token');
-		$data = $this->request->data['sell'];
+		$code = $session->read('sell.data.'. Defines::SELL_DATA_CODE);
+		
+		$parts_post = $this->request->data['parts'];
 
 		if (!$token || !$this->_checkToken($token, false)) {
 			$this->render('step5_error');
 			return;
 		}
 
-
-		$parts = [];
-		foreach ($data as $d) {
-			if ($d['count'] > 0) {
-				$parts[] = $d;
+		foreach ($parts_post as $p) {
+			//	パーツデータの先頭に注文コードを付与
+			array_unshift( $p ,  $code );
+			if ($p['count'] > 0) {
+				$parts_valid[] = $p;
 			}
 		}
 
-		$this->set('parts', $parts);
-		$this->request->session()->write('sell.parts', $parts);
+		$this->set('parts', $parts_valid);
+		$this->request->session()->write('sell.parts', $parts_valid);
 	}
 
 	public function step6($code) {

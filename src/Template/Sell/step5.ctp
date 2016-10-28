@@ -133,7 +133,7 @@ $this->Form->templates([
 <br>
 <div class="text-center">
 
-	<button class="my-btn my-btn-primary"　type="submit" >送信</button>
+	<button class="my-btn my-btn-primary"　type="submit" >次へ</button>
 	<?php
 	echo $this->Form->end();
 	?>

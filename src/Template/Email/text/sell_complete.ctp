@@ -36,6 +36,7 @@ foreach ($parts as $p):
 	$sum_all += $sum;
 ?>
 <?= $p['id'] ?>  <?= $p['name'] ?> ￥<?= number_format($p['cost']) ?> × <?= $p['count'] ?>　=　<?= number_format($sum) ?>
+
 <?php endforeach ?>
 
 
