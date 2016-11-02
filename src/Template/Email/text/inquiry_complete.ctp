@@ -1,29 +1,37 @@
 <?php
-use App\Defines\Defines;
 
-$access_name = Defines::ACCESS_NAME;
+use App\Defines\Defines;
 ?>
 ================================================================================
-　　　　　修理受付サービス　修理受付完了
+　　　　　問合せ受付サービス　お問合せ受付完了
 ================================================================================
 
-<?= $data[Defines::REPAIR_DATA_NAME1]?><?= $data[Defines::INQUIRY_DATA_NAME2]?>様
+<?= $data[Defines::INQUIRY_DATA_NAME1] ?><?= $data[Defines::INQUIRY_DATA_NAME2] ?>様
 
-　この度は修理受付サービスをご利用いただきまして誠にありがとうございます。
-下記の内容で修理受付を承りました。
+　この度は問合せ受付サービスをご利用いただきまして誠にありがとうございます。
+下記の内容で問合せを承りました。
 
 受付番号　　<?= $data[Defines::INQUIRY_DATA_CODE] ?>
 
-お名前： <?= $data[Defines::INQUIRY_DATA_NAME1]?> <?= $data[Defines::INQUIRY_DATA_NAME2]?>
+お名前： <?= $data[Defines::INQUIRY_DATA_NAME1] ?> <?= $data[Defines::INQUIRY_DATA_NAME2] ?>
 
-ご住所：〒<?= $data[Defines::INQUIRY_DATA_POST_CODE]?> <?= $data[Defines::INQUIRY_DATA_ADDRESS]?>
+ご住所：〒<?= $data[Defines::INQUIRY_DATA_POST_CODE] ?> <?= $data[Defines::INQUIRY_DATA_ADDRESS] ?>
 
-ご連絡方法： <?= $access_name[ $data[Defines::INQUIRY_DATA_ACCESS ]]?>
+ご連絡方法： <?= Defines::accessText($data[Defines::INQUIRY_DATA_ACCESS]) ?>
 
 メールアドレス：<?= $data[Defines::INQUIRY_DATA_EMAIL] ?>
 
+<?php if( !empty( $data[Defines::INQUIRY_DATA_TEL])):?>
+電話：<?= $data[Defines::INQUIRY_DATA_TEL] ?>
+
+<?php endif ?>
+<?php if( !empty( $data[Defines::INQUIRY_DATA_FAX])):?>
+FAX：<?= $data[Defines::INQUIRY_DATA_FAX] ?>
+
+<?php endif ?>
+
 お問合せ内容：
- <?= $data[Defines::INQUIRY_DATA_CONTENT] ?>
+<?= $data[Defines::INQUIRY_DATA_CONTENT] ?>
 
 -------------------------------------------------------------------------------
 
@@ -32,7 +40,7 @@ $access_name = Defines::ACCESS_NAME;
 
 お問合せ先
 TEL:0000-00-0000
-（日祝および年末年始、夏季休暇中を除く　午前9時～午後5時）
+（土日祝日および年末年始、夏季休暇中を除く　午前9時～午後5時）
 
 ===============================================================================
 高儀

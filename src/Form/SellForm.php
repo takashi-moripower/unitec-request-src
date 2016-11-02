@@ -44,7 +44,7 @@ class SellForm extends BaseForm {
 			'email',
 		]);
 
-		$validator->allowEmpty(['tel', 'fax','content']);
+		$validator->allowEmpty(['tel', 'fax', 'content']);
 
 		$validator->add('name1', 'custom', [
 			'rule' => [$this, 'checkZenkaku'],
@@ -63,6 +63,8 @@ class SellForm extends BaseForm {
 			'rule' => [$this, 'checkKana'],
 			'message' => '全角カタカナで入力してください'
 		]);
+
+		$validator->notEmpty('access', '連絡手段を選択してください');
 
 		$validator->add('access', 'custom', [
 			'rule' => [$this, 'checkAccess'],
@@ -90,7 +92,7 @@ class SellForm extends BaseForm {
 			Defines::SELL_DATA_KANA_NAME2 => $data['kana-name2'],
 			Defines::SELL_DATA_POST_CODE => $data['post-code'],
 			Defines::SELL_DATA_ADDRESS => $data['address'],
-			Defines::SELL_DATA_ACCESS => $data['access'],
+			Defines::SELL_DATA_ACCESS => $this->_formatAccess($data['access']),
 			Defines::SELL_DATA_TEL => $data['tel'],
 			Defines::SELL_DATA_FAX => $data['fax'],
 			Defines::SELL_DATA_EMAIL => $data['email'],
@@ -103,13 +105,14 @@ class SellForm extends BaseForm {
 
 		return $result;
 	}
-	
+
 	protected function _execute(array $data) {
-		$table = TableRegistry::get( $this->_tableName );
-		$entity = $table->get( $data['id'] );
+		$table = TableRegistry::get($this->_tableName);
+		$entity = $table->get($data['id']);
 
 		$result = $this->_getDataToCsv($entity, $data);
 
 		return $result;
 	}
+
 }

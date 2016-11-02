@@ -1,4 +1,7 @@
 <?php
+
+use App\Defines\Defines;
+
 $this->append('script');
 echo $this->Html->script('https://yubinbango.github.io/yubinbango/yubinbango.js');
 $this->end();
@@ -6,13 +9,12 @@ $this->end();
 $template_date = '<div>{{year}}　年　{{month}}　月</div>';
 $template_radio = '<input type="radio" name="{{name}}" value="{{value}}"{{attrs}}><div class="my-radio"></div>';
 echo $this->Form->create($form, ['class' => 'h-adr']);
-echo $this->Form->hidden('id',['default'=>$id]);
+echo $this->Form->hidden('id', ['default' => $id]);
 
 
 $this->Form->templates([
-	'radio'=>$template_radio
+	'radio' => $template_radio
 ]);
-
 ?>
 <input type="hidden" class="p-country-name" value="Japan">
 
@@ -54,32 +56,18 @@ $this->Form->templates([
 			</td>
 		</tr>
 		<tr>
-			<th>
+			<th class="requied">
 				連絡手段
 			</th>
-			<td class="my-form-radio">
+			<td class="my-form-check">
 				<?php
 				$access_error = !empty($form->errors()['access']);
-				$access_types = [
-					1 => 'メール',
-					2 => '電話',
-					3 => 'FAX'
-				]
+				$access_types = \App\Defines\Defines::ACCESS_NAME;
 				?>
 				<div class="form-group <?= $access_error ? 'has-error' : '' ?>">
-					
 					<?php
-					echo $this->Form->radio('access', $access_types , ['default'=>1]);
-					?>
-					<?php if(false) : ?>
-					<input type="radio" name="access" id="access-1" value="1" checked="checked" requied="reqied">
-					<label for="access-1">メール</label>
-					<input type="radio" name="access" id="access-2" value="2" requied="reqied">
-					<label for="access-2">電話</label>
-					<input type="radio" name="access" id="access-3" value="3" requied="reqied">
-					<label for="access-3">FAX</label>
-					<?php endif ?>
-					<?php
+					echo $this->Form->select('access', $access_types, ['multiple' => 'checkbox']);
+
 					if ($access_error) {
 						foreach ($form->errors()['access'] as $msg) {
 							echo "<div class='help-block'>{$msg}</div>";
@@ -97,7 +85,7 @@ $this->Form->templates([
 			</th>
 			<td>
 				<?php
-				echo $this->Form->input('email', ['type' => 'email', 'label' => false, 'class' => '' , 'readonly'=>'readonly' , 'value'=>$email]);
+				echo $this->Form->input('email', ['type' => 'email', 'label' => false, 'class' => '', 'readonly' => 'readonly', 'value' => $email]);
 				?>				
 			</td>
 		</tr>
@@ -107,7 +95,7 @@ $this->Form->templates([
 			</th>
 			<td>
 				<?php
-				echo $this->Form->input('tel', ['type' => 'tel', 'label' => false, 'class' => '' ]);
+				echo $this->Form->input('tel', ['type' => 'tel', 'label' => false, 'class' => '']);
 				?>				
 			</td>
 		</tr>
@@ -117,7 +105,7 @@ $this->Form->templates([
 			</th>
 			<td>
 				<?php
-				echo $this->Form->input('fax', ['type' => 'fax', 'label' => false, 'class' => '' ]);
+				echo $this->Form->input('fax', ['type' => 'fax', 'label' => false, 'class' => '']);
 				?>				
 			</td>
 		</tr>
@@ -127,7 +115,7 @@ $this->Form->templates([
 			</th>
 			<td class="product">
 				<?php
-				echo $this->Form->input('product', ['type' => 'fax', 'label' => false, 'class' => '' ]);
+				echo $this->Form->input('product', ['type' => 'fax', 'label' => false, 'class' => '']);
 				?>
 				<div class="comment">※ 商品名や型式、JANコードを入力してください。 JANコードとは</div>
 			</td>
@@ -138,7 +126,6 @@ $this->Form->templates([
 			</th>
 			<td>
 				<?= $this->Form->input('date', ['type' => 'date', 'label' => false, 'monthNames' => false, 'templates' => ['dateWidget' => $template_date]]) ?>
-				
 			</td>
 		</tr>
 		<tr>
@@ -146,7 +133,7 @@ $this->Form->templates([
 				故障内容
 			</th>
 			<td>
-				<?= $this->Form->textArea('content',['placeHolder'=>'200文字以内で入力してください']); ?>
+				<?= $this->Form->textArea('content', ['placeHolder' => '200文字以内で入力してください']); ?>
 				<br>
 			</td>
 		</tr>
@@ -154,7 +141,6 @@ $this->Form->templates([
 </table>
 <br>
 <div class="text-center">
-
 	<button class="my-btn my-btn-primary"　type="submit" >送信</button>
 	<?php
 	echo $this->Form->end();
@@ -162,3 +148,11 @@ $this->Form->templates([
 </div>
 <br>
 
+<?php $this->append('script'); ?>
+<script>
+	$(function(){
+		$('select[name="date[year]"]').append('<option value="">不明</option>');
+		$('select[name="date[month]"]').append('<option value="">不明</option>');
+	});
+</script>
+<?php $this->end() ?>

@@ -6,7 +6,7 @@ class Defines {
 //		共通
 //--------------------------------------------------------------------------------
 	const TOKEN_TIME_LIMIT = 30;
-//	const TOKEN_TIME_LIMIT = 9999;
+//	const TOKEN_TIME_LIMIT = 60 * 24 * 7;
 	
 	const ACCESS_EMAIL = 1;
 	const ACCESS_TEL = 2;
@@ -24,6 +24,18 @@ class Defines {
 		self::ACCESS_FAX => 'FAX',
 	];
 	
+	static function accessText( $value ){
+		
+		$access = explode( "\r\n" , $value );
+
+		$access_text = [];
+		$AN = self::ACCESS_NAME;
+		foreach( $access as $a ){
+			$access_text[] = $AN[$a];
+		}
+		
+		return implode(',',$access_text);
+	}
 
 //--------------------------------------------------------------------------------
 //		Email
@@ -32,40 +44,44 @@ class Defines {
 
 	const MAIL_TEMPLATE_BASE = [
 		'transport'=>'default',
+//		'transport'=>'smtp',
 		'sender'=>self::MAIL_SENDER,
 		'from'=>self::MAIL_SENDER,
 	];
 	
 	const MAIL_TEMPLATE_REPAIR_CHECK = self::MAIL_TEMPLATE_BASE + [
 		'template'=>'check',
-		'subject'=>'修理受付サービス　本人確認手続き'
+		'subject'=>'修理受付サービス　本人確認手続き',
+		'service'=>'修理受付',
 	];
 	const MAIL_TEMPLATE_REPAIR_COMPLETE = self::MAIL_TEMPLATE_BASE + [
 		'template'=>'repairComplete',
 		'subject'=>'修理受付サービス　修理受付完了',
-//		'bcc' => 'komatsu@unitec-net.co.jp',
+		'bcc' => 'komatsu@unitec-net.co.jp',
 //		複数のBCCを登録する場合は　[]で囲み　, で区切る
 //		'bcc'=>['tsukasa@moripower.jp','takashi@moripower.jp'],
 	];
 	
 	const MAIL_TEMPLATE_INQUIRY_CHECK = self::MAIL_TEMPLATE_BASE + [
 		'template'=>'check',
-		'subject'=>'お問合せ受付サービス　本人確認手続き'
+		'subject'=>'お問合せ受付サービス　本人確認手続き',
+		'service'=>'お問合せ受付',
 	];
 	const MAIL_TEMPLATE_INQUIRY_COMPLETE = self::MAIL_TEMPLATE_BASE + [
 		'template'=>'inquiryComplete',
 		'subject'=>'お問合せ受付サービス　お問合せ受付完了',
-//		'bcc' => 'komatsu@unitec-net.co.jp',
+		'bcc' => 'komatsu@unitec-net.co.jp',
 	];
 	
 	const MAIL_TEMPLATE_SELL_CHECK = self::MAIL_TEMPLATE_BASE + [
 		'template'=>'check',
-		'subject'=>'部品購入受付サービス　本人確認手続き'
+		'subject'=>'部品購入受付サービス　本人確認手続き',
+		'service'=>'部品購入受付',
 	];
 	const MAIL_TEMPLATE_SELL_COMPLETE = self::MAIL_TEMPLATE_BASE + [
 		'template'=>'sellComplete',
 		'subject'=>'部品購入受付サービス　部品購入受付完了',
-//		'bcc' => 'komatsu@unitec-net.co.jp',
+		'bcc' => 'komatsu@unitec-net.co.jp',
 	];
 	static function getTemplateCheck( $type ){
 

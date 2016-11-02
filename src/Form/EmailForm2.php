@@ -60,15 +60,16 @@ class EmailForm2 extends Form {
 		$email = $data['email'];
 
 		$limit = $entity->created;
-		$limit->addMinutes(30);
+		$limit->addMinutes(Defines::TOKEN_TIME_LIMIT);
 
 		$emailObj = new \Cake\Network\Email\Email($this->_template);
 
 		$emailObj->viewVars([
 					'email' => $email,
 					'title' => $this->_template['subject'],
+					'service' => $this->_template['service'],
 					'limit' => $limit,
-					'url' => Router::url(['controller' => $this->_type , 'action' => 'step41', urlencode($email), $token], true)
+					'url' => Router::url(['controller' => $this->_type, 'action' => 'step41', urlencode($email), $token], true)
 				])
 				->to($email)
 				->send();

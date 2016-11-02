@@ -65,6 +65,8 @@ class InquiryForm extends BaseForm {
 			'message' => '全角カタカナで入力してください'
 		]);
 
+		$validator->notEmpty('access', '連絡手段を選択してください');
+
 		$validator->add('access', 'custom', [
 			'rule' => [$this, 'checkAccess'],
 			'message' => '選択された連絡方法が空欄です'
@@ -91,7 +93,7 @@ class InquiryForm extends BaseForm {
 			Defines::INQUIRY_DATA_KANA_NAME2 => $data['kana-name2'],
 			Defines::INQUIRY_DATA_POST_CODE => $data['post-code'],
 			Defines::INQUIRY_DATA_ADDRESS => $data['address'],
-			Defines::INQUIRY_DATA_ACCESS => $data['access'],
+			Defines::INQUIRY_DATA_ACCESS => $this->_formatAccess( $data['access'] ),
 			Defines::INQUIRY_DATA_TEL => $data['tel'],
 			Defines::INQUIRY_DATA_FAX => $data['fax'],
 			Defines::INQUIRY_DATA_EMAIL => $data['email'],

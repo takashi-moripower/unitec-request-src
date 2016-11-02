@@ -46,7 +46,7 @@ class RepairForm extends BaseForm {
 		]);
 
 		$validator->allowEmpty(['tel', 'fax']);
-
+		
 		$validator->add('name1', 'custom', [
 			'rule' => [$this, 'checkZenkaku'],
 			'message' => '全角文字で入力してください'
@@ -65,6 +65,8 @@ class RepairForm extends BaseForm {
 			'message' => '全角カタカナで入力してください'
 		]);
 
+		$validator->notEmpty('access', '連絡手段を選択してください');
+		
 		$validator->add('access', 'custom', [
 			'rule' => [$this, 'checkAccess'],
 			'message' => '選択された連絡方法が空欄です'
@@ -91,7 +93,7 @@ class RepairForm extends BaseForm {
 			Defines::REPAIR_DATA_KANA_NAME2 => $data['kana-name2'],
 			Defines::REPAIR_DATA_POST_CODE => $data['post-code'],
 			Defines::REPAIR_DATA_ADDRESS => $data['address'],
-			Defines::REPAIR_DATA_ACCESS => $data['access'],
+			Defines::REPAIR_DATA_ACCESS => $this->_formatAccess( $data['access']),
 			Defines::REPAIR_DATA_TEL => $data['tel'],
 			Defines::REPAIR_DATA_FAX => $data['fax'],
 			Defines::REPAIR_DATA_EMAIL => $data['email'],

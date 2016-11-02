@@ -32,7 +32,7 @@ $code = $sell[Defines::SELL_DATA_CODE];
 			</tr>
 			<tr>
 				<th>連絡手段</th>
-				<td><?= $access_name[$sell[Defines::SELL_DATA_ACCESS]] ?></td>
+				<td><?= Defines::accessText($sell[Defines::SELL_DATA_ACCESS]) ?></td>
 			</tr>
 			<tr>
 				<th>電話番号</th>

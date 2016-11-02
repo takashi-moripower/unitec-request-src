@@ -52,32 +52,18 @@ $this->Form->templates([
 			</td>
 		</tr>
 		<tr>
-			<th>
+			<th class="requied">
 				連絡手段
 			</th>
-			<td class="my-form-radio">
+			<td class="my-form-check">
 				<?php
 				$access_error = !empty($form->errors()['access']);
-				$access_types = [
-					1 => 'メール',
-					2 => '電話',
-					3 => 'FAX'
-				]
+				$access_types = \App\Defines\Defines::ACCESS_NAME;
 				?>
 				<div class="form-group <?= $access_error ? 'has-error' : '' ?>">
-					
 					<?php
-					echo $this->Form->radio('access', $access_types , ['default'=>1]);
-					?>
-					<?php if(false) : ?>
-					<input type="radio" name="access" id="access-1" value="1" checked="checked" requied="reqied">
-					<label for="access-1">メール</label>
-					<input type="radio" name="access" id="access-2" value="2" requied="reqied">
-					<label for="access-2">電話</label>
-					<input type="radio" name="access" id="access-3" value="3" requied="reqied">
-					<label for="access-3">FAX</label>
-					<?php endif ?>
-					<?php
+					echo $this->Form->select('access', $access_types , ['multiple'=>'checkbox']);
+
 					if ($access_error) {
 						foreach ($form->errors()['access'] as $msg) {
 							echo "<div class='help-block'>{$msg}</div>";

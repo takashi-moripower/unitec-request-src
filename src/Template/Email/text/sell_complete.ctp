@@ -1,17 +1,14 @@
 <?php
-
 use App\Defines\Defines;
-
-$access_name = Defines::ACCESS_NAME;
 ?>
 ================================================================================
-　　　　　部品購入受付サービス　修理受付完了
+　　　　　部品購入受付サービス　部品購入受付完了
 ================================================================================
 
 <?= $data[Defines::SELL_DATA_NAME1] ?><?= $data[Defines::SELL_DATA_NAME2] ?>様
 
 　この度は部品購入受付サービスをご利用いただきまして誠にありがとうございます。
-下記の内容で修理受付を承りました。
+下記の内容でご注文を承りました。
 
 受付番号　　<?= $data[Defines::SELL_DATA_CODE] ?>
 
@@ -19,9 +16,18 @@ $access_name = Defines::ACCESS_NAME;
 
 ご住所：〒<?= $data[Defines::SELL_DATA_POST_CODE] ?> <?= $data[Defines::SELL_DATA_ADDRESS] ?>
 
-ご連絡方法： <?= $access_name[$data[Defines::SELL_DATA_ACCESS]] ?>
+ご連絡方法： <?= Defines::accessText($data[Defines::SELL_DATA_ACCESS]) ?>
 
 メールアドレス：<?= $data[Defines::SELL_DATA_EMAIL] ?>
+
+<?php if( !empty( $data[Defines::SELL_DATA_TEL])):?>
+電話：<?= $data[Defines::SELL_DATA_TEL] ?>
+
+<?php endif ?>
+<?php if( !empty( $data[Defines::SELL_DATA_FAX])):?>
+FAX：<?= $data[Defines::SELL_DATA_FAX] ?>
+
+<?php endif ?>
 
 連絡メモ：
 <?= $data[Defines::SELL_DATA_CONTENT] ?>
@@ -53,7 +59,7 @@ foreach ($parts as $p):
 
 お問合せ先
 TEL:0000-00-0000
-（日祝および年末年始、夏季休暇中を除く　午前9時～午後5時）
+（土日祝日および年末年始、夏季休暇中を除く　午前9時～午後5時）
 
 ===============================================================================
 高儀

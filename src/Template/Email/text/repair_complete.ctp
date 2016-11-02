@@ -10,7 +10,7 @@ $access_name = Defines::ACCESS_NAME;
 <?= $data[Defines::REPAIR_DATA_NAME1]?><?= $data[Defines::REPAIR_DATA_NAME2]?>様
 
 　この度は修理受付サービスをご利用いただきまして誠にありがとうございます。
-下記の内容で修理受付を承りました。
+下記の内容でご依頼を承りました。
 
 受付番号　　<?= $data[Defines::REPAIR_DATA_CODE] ?>
 
@@ -18,9 +18,18 @@ $access_name = Defines::ACCESS_NAME;
 
 ご住所：〒<?= $data[Defines::REPAIR_DATA_POST_CODE]?> <?= $data[Defines::REPAIR_DATA_ADDRESS]?>
 
-ご連絡方法： <?= $access_name[ $data[Defines::REPAIR_DATA_ACCESS ]]?>
+ご連絡方法： <?= Defines::accessText($data[Defines::REPAIR_DATA_ACCESS]) ?>
 
 メールアドレス：<?= $data[Defines::REPAIR_DATA_EMAIL] ?>
+
+<?php if( !empty( $data[Defines::REPAIR_DATA_TEL])):?>
+電話：<?= $data[Defines::REPAIR_DATA_TEL] ?>
+
+<?php endif ?>
+<?php if( !empty( $data[Defines::REPAIR_DATA_FAX])):?>
+FAX：<?= $data[Defines::REPAIR_DATA_FAX] ?>
+
+<?php endif ?>
 
 故障内容：
  <?= $data[Defines::REPAIR_DATA_CONTENT] ?>
@@ -32,7 +41,7 @@ $access_name = Defines::ACCESS_NAME;
 
 お問合せ先
 TEL:0000-00-0000
-（日祝および年末年始、夏季休暇中を除く　午前9時～午後5時）
+（土日祝日および年末年始、夏季休暇中を除く　午前9時～午後5時）
 
 ===============================================================================
 高儀
