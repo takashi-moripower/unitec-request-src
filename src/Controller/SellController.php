@@ -175,7 +175,12 @@ class SellController extends BaseController {
 	}
 
 	protected function _postComplete($data, $parts) {
-		$emailObj = new \Cake\Network\Email\Email(Defines::MAIL_TEMPLATE_SELL_COMPLETE);
+		
+		$template = Defines::MAIL_TEMPLATE_SELL_COMPLETE;
+		
+		$template['subject'] .= sprintf('（受付番号:%s）', $data[Defines::SELL_DATA_CODE]);
+
+		$emailObj = new \Cake\Network\Email\Email($template);
 		$emailObj
 				->viewVars(compact('data', 'parts'))
 				->to($data[Defines::SELL_DATA_EMAIL])

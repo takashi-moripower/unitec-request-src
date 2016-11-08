@@ -66,7 +66,7 @@ $this->Form->templates([
 				?>
 				<div class="form-group <?= $access_error ? 'has-error' : '' ?>">
 					<?php
-					echo $this->Form->select('access', $access_types , ['multiple'=>'checkbox']);
+					echo $this->Form->select('access', $access_types, ['multiple' => 'checkbox', 'default' => Defines::ACCESS_DEFAULT]);
 
 					if ($access_error) {
 						foreach ($form->errors()['access'] as $msg) {
@@ -134,7 +134,7 @@ $this->Form->templates([
 				お問い合わせ<br>内容
 			</th>
 			<td>
-				<?= $this->Form->textArea('content',['placeHolder'=>'200文字以内で入力してください']); ?>
+				<?= $this->Form->textArea('content', ['placeHolder' => '200文字以内で入力してください']); ?>
 				<br>
 			</td>
 		</tr>

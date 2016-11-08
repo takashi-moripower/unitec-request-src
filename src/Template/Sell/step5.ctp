@@ -1,4 +1,7 @@
 <?php
+
+use App\Defines\Defines;
+
 $this->append('script');
 echo $this->Html->script('https://yubinbango.github.io/yubinbango/yubinbango.js');
 $this->end();
@@ -6,11 +9,10 @@ $this->end();
 $template_date = '<div>{{year}}　年　{{month}}　月</div>';
 $template_radio = '<input type="radio" name="{{name}}" value="{{value}}"{{attrs}}><div class="my-radio"></div>';
 echo $this->Form->create($form, ['class' => 'h-adr']);
-echo $this->Form->hidden('id',['default'=>$id]);
+echo $this->Form->hidden('id', ['default' => $id]);
 $this->Form->templates([
-	'radio'=>$template_radio
+	'radio' => $template_radio
 ]);
-
 ?>
 <input type="hidden" class="p-country-name" value="Japan">
 
@@ -62,7 +64,8 @@ $this->Form->templates([
 				?>
 				<div class="form-group <?= $access_error ? 'has-error' : '' ?>">
 					<?php
-					echo $this->Form->select('access', $access_types , ['multiple'=>'checkbox']);
+
+					echo $this->Form->select('access', $access_types, ['multiple' => 'checkbox', 'default' => Defines::ACCESS_DEFAULT]);
 
 					if ($access_error) {
 						foreach ($form->errors()['access'] as $msg) {
@@ -81,7 +84,7 @@ $this->Form->templates([
 			</th>
 			<td>
 				<?php
-				echo $this->Form->input('email', ['type' => 'email', 'label' => false, 'class' => '' , 'readonly'=>'readonly' , 'value'=>$email]);
+				echo $this->Form->input('email', ['type' => 'email', 'label' => false, 'class' => '', 'readonly' => 'readonly', 'value' => $email]);
 				?>				
 			</td>
 		</tr>
@@ -91,7 +94,7 @@ $this->Form->templates([
 			</th>
 			<td>
 				<?php
-				echo $this->Form->input('tel', ['type' => 'tel', 'label' => false, 'class' => '' ]);
+				echo $this->Form->input('tel', ['type' => 'tel', 'label' => false, 'class' => '']);
 				?>				
 			</td>
 		</tr>
@@ -101,7 +104,7 @@ $this->Form->templates([
 			</th>
 			<td>
 				<?php
-				echo $this->Form->input('fax', ['type' => 'fax', 'label' => false, 'class' => '' ]);
+				echo $this->Form->input('fax', ['type' => 'fax', 'label' => false, 'class' => '']);
 				?>				
 			</td>
 		</tr>
@@ -110,7 +113,7 @@ $this->Form->templates([
 				連絡メモ<br>
 			</th>
 			<td>
-				<?= $this->Form->textArea('content',['placeHolder'=>'200文字以内で入力してください']); ?>
+				<?= $this->Form->textArea('content', ['placeHolder' => '200文字以内で入力してください']); ?>
 				<br>
 			</td>
 		</tr>

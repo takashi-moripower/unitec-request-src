@@ -5,6 +5,7 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 use Cake\ORM\TableRegistry;
 use Cake\I18n\Date;
+use App\Defines\Defines;
 
 /**
  * Repair Entity
@@ -15,5 +16,5 @@ use Cake\I18n\Date;
  * @property \Cake\I18n\Time $created
  */
 class Repair extends BaseEntity {
-	protected $_prefix = "WR";	
+	protected $_prefix = Defines::REPAIR_PREFIX;	
 }

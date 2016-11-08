@@ -66,7 +66,7 @@ $this->Form->templates([
 				?>
 				<div class="form-group <?= $access_error ? 'has-error' : '' ?>">
 					<?php
-					echo $this->Form->select('access', $access_types, ['multiple' => 'checkbox']);
+					echo $this->Form->select('access', $access_types, ['multiple' => 'checkbox', 'default' => Defines::ACCESS_DEFAULT]);
 
 					if ($access_error) {
 						foreach ($form->errors()['access'] as $msg) {
