@@ -80,7 +80,7 @@ class RepairForm extends BaseForm {
 		return $validator;
 	}
 
-	protected function _getDataToCsv($entity, $data) {
+	protected function _getArrayedData($entity, $data) {
 
 		$date = $entity->created->format('Y-m-d h:i:s');
 

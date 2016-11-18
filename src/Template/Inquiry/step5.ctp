@@ -110,12 +110,22 @@ $this->Form->templates([
 			</td>
 		</tr>
 		<tr>
-			<th>
+			<th class="requied">
 				カテゴリ
 			</th>
 			<td>
-				<?= $this->Form->select('category', Defines::INQUIRY_CATEGORIES) ?>
+				<?php
+				echo $this->Form->select('category', Defines::INQUIRY_CATEGORIES);
+				$category_error = !empty($form->errors()['category']);
+				if ($category_error) {
+					echo '<div class="form-group  has-error">';
 
+					foreach ($form->errors()['category'] as $msg) {
+						echo "<div class='help-block'>{$msg}</div>";
+					}
+					echo '</div>';
+				}
+				?>
 			</td>
 		</tr>
 		<tr>

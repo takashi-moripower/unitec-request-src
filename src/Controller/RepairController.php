@@ -21,6 +21,4 @@ class RepairController  extends BaseController {
 	protected function _getForm(){
 		return new RepairForm;
 	}
-	
-	
 }

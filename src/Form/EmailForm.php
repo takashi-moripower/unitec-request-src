@@ -11,7 +11,7 @@ use App\Utils\AppUtility;
 use Cake\Routing\Router;
 use Cake\Utility\Inflector;
 
-class EmailForm2 extends Form {
+class EmailForm extends Form {
 
 	protected $_table_name;
 	protected $_template;

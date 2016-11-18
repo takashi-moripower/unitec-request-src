@@ -107,6 +107,8 @@ class SellController extends BaseController {
 				$parts_valid[] = $p;
 			}
 		}
+		
+		$this->set('referer' , $this->referer(['controller'=>'sell','action'=>'step51']));
 
 		$this->set('parts', $parts_valid);
 		$this->request->session()->write('sell.parts', $parts_valid);

@@ -101,8 +101,8 @@ $code = $sell[Defines::SELL_DATA_CODE];
 
 <div class="text-center">
 <?php if(false): ?>
-	<a href="<?= $this->Url->build(['action' => 'step53']) ?>" class="my-btn">戻る</a>
-<?php endif ?>
 	<a href="javascript:history.back();" class="my-btn">戻る</a>
+<?php endif ?>
+	<a href="<?= $referer ?>" class="my-btn">戻る</a>
 	<a href="<?= $this->Url->build(['action'=>'step6',$code])?>" class="my-btn my-btn-primary"　>送信する</a>
 </div>

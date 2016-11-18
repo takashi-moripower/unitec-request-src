@@ -79,7 +79,7 @@ class SellForm extends BaseForm {
 		return $validator;
 	}
 
-	protected function _getDataToCsv($entity, $data) {
+	protected function _getArrayedData($entity, $data) {
 
 		$date = $entity->created->format('Y-m-d h:i:s');
 
@@ -110,7 +110,7 @@ class SellForm extends BaseForm {
 		$table = TableRegistry::get($this->_tableName);
 		$entity = $table->get($data['id']);
 
-		$result = $this->_getDataToCsv($entity, $data);
+		$result = $this->_getArrayedData($entity, $data);
 
 		return $result;
 	}

@@ -42,6 +42,8 @@ class Defines {
 
 		return implode(',', $access_text);
 	}
+	
+	const DATA_DIR = '/tmp/cindy/data/';
 
 //--------------------------------------------------------------------------------
 //		Email
@@ -107,6 +109,19 @@ class Defines {
 
 			case 'sell':
 				return self::MAIL_TEMPLATE_SELL_CHECK;
+		}
+	}
+	
+	static function getTemplateComplete($type){
+		switch($type){
+			case 'repair':
+				return self::MAIL_TEMPLATE_REPAIR_COMPLETE;
+				
+			case 'inquiry':
+				return self::MAIL_TEMPLATE_INQUIRY_COMPLETE;
+				
+			case 'sell':
+				return self::MAIL_TEMPLATE_SELL_COMPLETE;
 		}
 	}
 
@@ -177,7 +192,7 @@ class Defines {
 	const REPAIR_DATA_BUY_YEAR = 15;
 	const REPAIR_DATA_BUY_MONTH = 16;
 	
-	const REPAIR_PATH = '/home/unitec/data/' . self::REPAIR_PREFIX . '/';
+	const REPAIR_PATH =self::DATA_DIR . self::REPAIR_PREFIX . '/';
 //--------------------------------------------------------------------------------
 //		問合せ
 //--------------------------------------------------------------------------------
@@ -246,12 +261,13 @@ class Defines {
 	const INQUIRY_DATA_BLANK1 = 15;
 	const INQUIRY_DATA_BLANK2 = 16;
 	const INQUIRY_CATEGORIES = [
+		0 => '選択してください',
 		1 => '大工道具・作業工具・園芸用品に関するお問い合わせ',
 		2 => '電動工具・園芸機器に関するお問い合わせ',
 		3 => 'キッチン用品に関するお問い合わせ',
 		4 => 'その他のお問い合わせ',
 	];
-	const INQUIRY_PATH = '/home/unitec/data/' . self::INQUIRY_PREFIX . '/';
+	const INQUIRY_PATH =self::DATA_DIR . self::INQUIRY_PREFIX . '/';
 //--------------------------------------------------------------------------------
 //		部品販売
 //--------------------------------------------------------------------------------
@@ -317,9 +333,9 @@ class Defines {
 	const SELL_DATA_BLANK2 = 14;
 	const SELL_DATA_BLANK3 = 15;
 	const SELL_DATA_BLANK4 = 16;
-	const SELL_PATH = '/home/unitec/data/' . self::SELL_PREFIX . '/';
+	const SELL_PATH =self::DATA_DIR . self::SELL_PREFIX . '/';
 	const SELL_PARTS_PATH = self::SELL_PATH . 'parts/';
-	const DATA_FILE_CATEGORIES = self::SELL_PATH . 'data/categories.csv';
+	const DATA_FILE_CATEGORIES = '/home/unitec/data/HB/data/categories.csv';
 	const CATEGORY_JUNLE = 0;
 	const CATEGORY_NAME = 1;
 

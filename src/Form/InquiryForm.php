@@ -8,7 +8,7 @@ use Cake\Validation\Validator;
 use Cake\Form\Schema;
 
 class InquiryForm extends BaseForm {
-
+	
 	public function __construct() {
 		$this->_tableName = 'inquiries';
 		$this->_mailTemplate = Defines::MAIL_TEMPLATE_INQUIRY_COMPLETE;
@@ -67,6 +67,11 @@ class InquiryForm extends BaseForm {
 
 		$validator->notEmpty('access', '連絡手段を選択してください');
 
+		$validator->add('category', 'validValue', [
+			'rule' => ['range', 1, 4],
+			'message' => 'カテゴリを選択してください'
+		]);
+		
 		$validator->add('access', 'custom', [
 			'rule' => [$this, 'checkAccess'],
 			'message' => '選択された連絡方法が空欄です'
@@ -80,7 +85,7 @@ class InquiryForm extends BaseForm {
 		return $validator;
 	}
 
-	protected function _getDataToCsv($entity, $data) {
+	protected function _getArrayedData($entity, $data) {
 
 		$date = $entity->created->format('Y-m-d h:i:s');
 
@@ -93,7 +98,7 @@ class InquiryForm extends BaseForm {
 			Defines::INQUIRY_DATA_KANA_NAME2 => $data['kana-name2'],
 			Defines::INQUIRY_DATA_POST_CODE => $data['post-code'],
 			Defines::INQUIRY_DATA_ADDRESS => $data['address'],
-			Defines::INQUIRY_DATA_ACCESS => $this->_formatAccess( $data['access'] ),
+			Defines::INQUIRY_DATA_ACCESS => $this->_formatAccess($data['access']),
 			Defines::INQUIRY_DATA_TEL => $data['tel'],
 			Defines::INQUIRY_DATA_FAX => $data['fax'],
 			Defines::INQUIRY_DATA_EMAIL => $data['email'],

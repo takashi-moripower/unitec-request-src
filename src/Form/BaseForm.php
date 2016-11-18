@@ -14,14 +14,13 @@ abstract class BaseForm extends Form {
 	protected $_mailTemplate;
 	protected $_tableName;
 
-	abstract protected function _getDataToCsv($entity, $data);
+	abstract protected function _getArrayedData($entity, $data);
 
 	public function checkPost($value, $context) {
 		return !empty(preg_match('/^[0-9]{7}$/', $value));
 	}
 
 	public function checkAccess($value, $context) {
-
 
 		$fields = Defines::ACCESS_FIELD;
 		foreach ($value as $access) {
@@ -50,24 +49,12 @@ abstract class BaseForm extends Form {
 		return implode( "\r\n" , $value );
 	}
 
-	protected function _execute(array $data) {
+	protected function _execute(array $dataPost) {
 		$table = TableRegistry::get($this->_tableName);
-		$entity = $table->get($data['id']);
+		$entity = $table->get($dataPost['id']);
 
-		$result = $this->_getDataToCsv($entity, $data);
+		$arrayedData = $this->_getArrayedData($entity, $dataPost);
 
-		$entity->token = NULL;
-		$table->save($entity);
-
-		$this->_mailTemplate['subject'] .= sprintf('（受付番号:%s）', $result[Defines::REPAIR_DATA_CODE]);
-
-		$emailObj = new \Cake\Network\Email\Email($this->_mailTemplate);
-		$emailObj
-				->viewVars(['data' => $result])
-				->to($data['email'])
-				->send();
-
-		return $result;
+		return $arrayedData;
 	}
-
 }

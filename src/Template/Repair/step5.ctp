@@ -11,7 +11,6 @@ $template_radio = '<input type="radio" name="{{name}}" value="{{value}}"{{attrs}
 echo $this->Form->create($form, ['class' => 'h-adr']);
 echo $this->Form->hidden('id', ['default' => $id]);
 
-
 $this->Form->templates([
 	'radio' => $template_radio
 ]);
@@ -125,7 +124,17 @@ $this->Form->templates([
 				購入日
 			</th>
 			<td>
-				<?= $this->Form->input('date', ['type' => 'date', 'label' => false, 'monthNames' => false, 'templates' => ['dateWidget' => $template_date]]) ?>
+				<?=
+				$this->Form->input('date', [
+					'type' => 'date',
+					'label' => false,
+					'monthNames' => false,
+					'templates' => ['dateWidget' => $template_date],
+					'maxYear' => date('Y'),
+					'minYear' => date('Y') - 20,
+					'empty' => '---',
+				]);
+				?>
 			</td>
 		</tr>
 		<tr>
@@ -147,7 +156,6 @@ $this->Form->templates([
 	?>
 </div>
 <br>
-
 <?php $this->append('script'); ?>
 <script>
 	$(function(){
