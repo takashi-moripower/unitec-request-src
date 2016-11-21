@@ -119,6 +119,7 @@ abstract class BaseController extends AppController {
 				$session->delete($session_key);
 				$session->write("{$session_key}.data", $data);
 				$session->write("{$session_key}.token", $token);
+				$session->write("{$session_key}.rawdata", $this->request->data);
 				return $this->redirect(['action' => 'step59']);
 			}
 		}

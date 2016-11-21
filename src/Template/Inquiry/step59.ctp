@@ -1,5 +1,4 @@
 <?php
-
 use App\Defines\Defines;
 
 $access_name = Defines::ACCESS_NAME;

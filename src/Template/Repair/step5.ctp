@@ -4,6 +4,17 @@ use App\Defines\Defines;
 
 $this->append('script');
 echo $this->Html->script('https://yubinbango.github.io/yubinbango/yubinbango.js');
+echo $this->Html->script('setInput');
+?>
+<script>
+	$(function () {
+		$('select[name="date[year]"]').append('<option value="">不明</option>');
+		$('select[name="date[month]"]').append('<option value="">不明</option>');
+		data = JSON.parse('<?= json_encode($this->request->session()->read('repair.rawdata')) ?>');
+		setInput(data);
+	});
+</script>
+<?php
 $this->end();
 
 $template_date = '<div>{{year}}　年　{{month}}　月</div>';
@@ -156,11 +167,3 @@ $this->Form->templates([
 	?>
 </div>
 <br>
-<?php $this->append('script'); ?>
-<script>
-	$(function(){
-		$('select[name="date[year]"]').append('<option value="">不明</option>');
-		$('select[name="date[month]"]').append('<option value="">不明</option>');
-	});
-</script>
-<?php $this->end() ?>

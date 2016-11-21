@@ -4,6 +4,15 @@ use App\Defines\Defines;
 
 $this->append('script');
 echo $this->Html->script('https://yubinbango.github.io/yubinbango/yubinbango.js');
+echo $this->Html->script('setInput');
+?>
+<script>
+	$(function () {
+		data = JSON.parse('<?= json_encode($this->request->session()->read('inquiry.rawdata')) ?>');
+		setInput(data);
+	});
+</script>
+<?php
 $this->end();
 
 $template_date = '<div>{{year}}　年　{{month}}　月</div>';
