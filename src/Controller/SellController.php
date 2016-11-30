@@ -114,7 +114,7 @@ class SellController extends BaseController {
 		$this->request->session()->write('sell.parts', $parts_valid);
 	}
 
-	public function step6($code) {
+	public function step6() {
 		$session = $this->request->session();
 		$parts = $session->read('sell.parts');
 		$data = $session->read('sell.data');
@@ -131,8 +131,9 @@ class SellController extends BaseController {
 
 		$this->_removeToken($token);
 		$session->write('sell', NULL);
+		$this->set('code', $data[Defines::REPAIR_DATA_CODE]);
 
-		$this->set('code', $code);
+//		$this->set('code', $code);
 	}
 
 	protected function _saveData($data) {
