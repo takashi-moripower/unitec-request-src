@@ -25,23 +25,6 @@ class SellController extends BaseController {
 		return new SellForm;
 	}
 
-	protected function _getCategories() {
-		$file = fopen(Defines::DATA_FILE_CATEGORIES, 'r+');
-		while (true) {
-			$data = fgetcsv($file);
-			if (empty($data)) {
-				break;
-			}
-			if (strpos($data[0], '#') === 0) {
-				continue;
-			}
-			$records[] = $data;
-		}
-		fclose($file);
-
-		return $records;
-	}
-
 	public function step5($email = NULL, $token = NULL) {
 		$form = $this->_getForm();
 
@@ -71,8 +54,6 @@ class SellController extends BaseController {
 	}
 
 	public function step51() {
-		$categories = $this->_getCategories();
-		$this->set(compact('categories'));
 	}
 
 	public function step52() {
@@ -190,13 +171,4 @@ class SellController extends BaseController {
 				->send();
 	}
 	
-	public function debug(){
-		$ne = TableRegistry::get('sells')->newEntity();
-		
-		$this->viewBuilder()->layout('default');
-		
-		$this->set('data',$ne->source());
-		$this->render('/Common/debug');
-	}
-
 }

@@ -335,8 +335,5 @@ class Defines {
 	const SELL_DATA_BLANK4 = 16;
 	const SELL_PATH =self::DATA_DIR . self::SELL_PREFIX . '/';
 	const SELL_PARTS_PATH = self::SELL_PATH . 'parts/';
-	const DATA_FILE_CATEGORIES = '/home/unitec/data/HB/data/categories.csv';
-	const CATEGORY_JUNLE = 0;
-	const CATEGORY_NAME = 1;
 
 }
