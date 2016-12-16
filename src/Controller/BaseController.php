@@ -191,6 +191,8 @@ abstract class BaseController extends AppController {
 		$csv = $this->SaveCsv->getBody($data);
 		$filename = $data[Defines::INQUIRY_DATA_CODE] . '.csv';
 
+		$this->_checkPath( $this->_filePath );
+		
 		try {
 			$f = fopen($this->_filePath . $filename, 'w+');
 			fwrite($f, $csv);
@@ -200,6 +202,14 @@ abstract class BaseController extends AppController {
 		}
 
 		return true;
+	}
+	
+	protected function _checkPath( $path ){
+		if( file_exists( $path ) ){
+			return;
+		}
+		mkdir( $path ,  0755  , true );
+		chmod( $path ,  0777 );
 	}
 
 	protected function _sendCompleteMail($data) {

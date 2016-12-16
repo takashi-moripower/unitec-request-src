@@ -121,6 +121,8 @@ class SellController extends BaseController {
 		$csv = $this->SaveCsv->getBody($data);
 		$filename = $data[Defines::SELL_DATA_CODE] . '.csv';
 
+		$this->_checkPath( $this->_filePath );
+
 		try {
 			$f = fopen($this->_filePath . $filename, 'w+');
 			fwrite($f, $csv);
@@ -136,6 +138,8 @@ class SellController extends BaseController {
 		$csv = $this->SaveCsv->getBody2($parts);
 		$filename = $data[Defines::SELL_DATA_CODE] . '.csv';
 		$path = Defines::SELL_PARTS_PATH;
+		
+		$this->_checkPath( $path );
 
 		try {
 			$f = fopen($path . $filename, 'w+');
