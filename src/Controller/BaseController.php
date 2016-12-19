@@ -206,6 +206,7 @@ abstract class BaseController extends AppController {
 	
 	protected function _checkPath( $path ){
 		if( file_exists( $path ) ){
+			chmod( $path ,  0777 );
 			return;
 		}
 		mkdir( $path ,  0755  , true );

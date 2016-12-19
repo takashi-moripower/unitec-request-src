@@ -8,10 +8,13 @@ class DebugController extends AppController{
 		
 //		$result = mkdir("/tmp/cindy/data", 0777 , true );
 //		chmod("/tmp/cindy/data" , 0777 );
-		$result = rmdir("/tmp/cindy/data");
-		$result = rmdir("/tmp/cindy");
+//		$result = rmdir("/tmp/cindy/data");
+//		$result = rmdir("/tmp/cindy");
 		
-		$this->set('data',$result);
+		chmod("/tmp/cindy/data" , 0777 );
+		chmod("/tmp/cindy" , 0777 );
+		
+		$this->set('data','success');
 		$this->render('../Common/debug');
 	}
 }
