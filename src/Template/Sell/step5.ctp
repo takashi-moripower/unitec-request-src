@@ -50,7 +50,8 @@ $this->Form->templates([
 				<div class="post-icon">〒</div><?= $this->Form->input('post-code', ['type' => 'text', 'label' => false, 'class' => 'p-postal-code']); ?>
 				<span> ※ ハイフンなしの半角数字7桁で入力してください。</span>
 
-				<?= $this->Form->input('address', ['type' => 'text', 'label' => false, 'class' => 'p-region p-locality p-street-address p-extended-address']); ?>
+				<?= $this->Form->input('address1', ['type' => 'text', 'label' => false, 'class' => 'p-region p-locality']); ?><br>
+				<?= $this->Form->input('address2', ['type' => 'text', 'label' => false, 'class' => ' p-street-address p-extended-address']); ?>
 			</td>
 		</tr>
 		<tr>

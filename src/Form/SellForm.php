@@ -22,7 +22,8 @@ class SellForm extends BaseForm {
 					'kana-name1' => 'string',
 					'kana-name2' => 'string',
 					'post-code' => 'number',
-					'address' => 'string',
+					'address1' => 'string',
+					'address2' => 'string',
 					'access' => 'number',
 					'email' => 'email',
 					'tel' => 'string',
@@ -40,7 +41,8 @@ class SellForm extends BaseForm {
 			'kana-name1',
 			'kana-name2',
 			'post-code',
-			'address',
+			'address1',
+			'address2',
 			'email',
 		]);
 
@@ -91,7 +93,7 @@ class SellForm extends BaseForm {
 			Defines::SELL_DATA_KANA_NAME1 => $data['kana-name1'],
 			Defines::SELL_DATA_KANA_NAME2 => $data['kana-name2'],
 			Defines::SELL_DATA_POST_CODE => $data['post-code'],
-			Defines::SELL_DATA_ADDRESS => $data['address'],
+			Defines::SELL_DATA_ADDRESS => $data['address1'].$data['address2'],
 			Defines::SELL_DATA_ACCESS => $this->_formatAccess($data['access']),
 			Defines::SELL_DATA_TEL => $data['tel'],
 			Defines::SELL_DATA_FAX => $data['fax'],
