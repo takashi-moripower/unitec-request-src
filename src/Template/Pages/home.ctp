@@ -11,3 +11,5 @@
 		<?= $this->Html->link('部品購入',['controller'=>'sell','action'=>'step0']) ?>
 	</li>
 </ul>
+
+20170120
