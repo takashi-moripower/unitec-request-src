@@ -24,40 +24,98 @@ class SellController extends BaseController {
 	protected function _getForm() {
 		return new SellForm;
 	}
-	
-	public function step0(){
+
+	public function step5($email = NULL, $token = NULL) {
+		$form = $this->_getForm();
+
+		if ($this->request->is('post')) {
+			$data = $this->request->data;
+
+			$data3 = $form->execute($data);
+
+			if ($data3 !== false) {
+				$this->request->session()->delete('sell');
+				$this->request->session()->write('sell.data', $data3);
+				$this->request->session()->write('sell.token', $token);
+				return $this->redirect(['action' => 'step51']);
+			}
+		}
+
+		$entity = $this->_checkToken($token);
+
+		if (!$entity) {
+			$this->Flash->errors('invalid access 1');
+			return $this->redirect('/');
+		}
+
+		$this->set('id', $entity->id);
+
+		$this->set(compact('email', 'form'));
+	}
+
+	public function step51() {
+	}
+
+	public function step52() {
 		
 	}
-	
-	public function step01(){}
-	
-	public function step19(){
+
+	public function step53() {
+		
+	}
+
+	public function step59() {
 		if (!$this->request->is('post', 'put', 'patch')) {
 			$this->Flash->error('invalid access');
 			return $this->redirect('/');
 		}
 
-		$parts_post = $this->request->data['parts'];
-		$parts_valid = [];
+		$session = $this->request->session();
+		$token = $session->read('sell.token');
+		$code = $session->read('sell.data.'. Defines::SELL_DATA_CODE);
 		
+		$parts_post = $this->request->data['parts'];
+
+		if (!$token || !$this->_checkToken($token, false)) {
+			$this->render('step5_error');
+			return;
+		}
+
 		foreach ($parts_post as $p) {
+			//	パーツデータの先頭に注文コードを付与
+			array_unshift( $p ,  $code );
 			if ($p['count'] > 0) {
 				$parts_valid[] = $p;
 			}
 		}
-		$this->set('parts', $parts_valid);
 		
-		return $this->redirect(['action'=>'step2']);
-	}
-	
-	public function step3(){}
-	public function step4($arg = NULL){}
-	
-	public function step5($arg1=NULL , $arg2 = NULL){
-		$this->set('form',new SellForm);
-	}
-	
+		$this->set('referer' , $this->referer(['controller'=>'sell','action'=>'step51']));
 
+		$this->set('parts', $parts_valid);
+		$this->request->session()->write('sell.parts', $parts_valid);
+	}
+
+	public function step6() {
+		$session = $this->request->session();
+		$parts = $session->read('sell.parts');
+		$data = $session->read('sell.data');
+		$token = $session->read('sell.token');
+
+		if (!$token || !$this->_checkToken($token, false)) {
+			$this->render('step5_error');
+			return;
+		}
+
+		$this->_saveData($data);
+		$this->_saveParts($data, $parts);
+		$this->_postComplete($data, $parts);
+
+		$this->_removeToken($token);
+		$session->write('sell', NULL);
+		$this->set('code', $data[Defines::REPAIR_DATA_CODE]);
+
+//		$this->set('code', $code);
+	}
 
 	protected function _saveData($data) {
 		$csv = $this->SaveCsv->getBody($data);

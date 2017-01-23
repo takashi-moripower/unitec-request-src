@@ -1,17 +1,16 @@
-<?php 
+<?php
+
 use App\Defines\Defines;
-?>
-<ol class="step-explain">
-	<?php 
-	foreach( Defines::SELL_PROGRESS as $item ){
-		echo "<li><div class='title'>{$item['label']}</div><div class='explain'>{$item['explain']}</div></li>";
+
+
+for ($j = 0; $j < 4; $j ++) {
+	$junle_name = "ジャンル".($j+1);
+	echo "<div class='row'>";
+	echo "<h2>{$junle_name}</h2>";
+	for ($c = 0; $c < 10; $c++) {
+		$url = $this->Url->build(['action'=>'step01']);
+		$cat_name = "カテゴリ".($j * 10 + $c+1);
+		echo "<a class='btn btn-default col-xs-3' href='{$url}'>{$cat_name}</a>";
 	}
-	?>
-</ol>
-
-
-<div class="text-center">
-	<a href="<?= $this->Url->build(['action' => 'step1']) ?>" class="my-btn my-btn-primary">
-		<i class="fa fa-caret-right"></i> 次に進む
-	</a>	
-</div>
+	echo "</div>";
+}

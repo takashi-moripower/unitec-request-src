@@ -8,7 +8,8 @@ $this->end();
 
 $template_date = '<div>{{year}}　年　{{month}}　月</div>';
 $template_radio = '<input type="radio" name="{{name}}" value="{{value}}"{{attrs}}><div class="my-radio"></div>';
-echo $this->Form->create($form, ['class' => 'h-adr', 'url'=>$this->Url->build(['action'=>'step51'])]);
+echo $this->Form->create($form, ['class' => 'h-adr']);
+echo $this->Form->hidden('id', ['default' => $id]);
 $this->Form->templates([
 	'radio' => $template_radio
 ]);
@@ -84,7 +85,7 @@ $this->Form->templates([
 			</th>
 			<td>
 				<?php
-				echo $this->Form->input('email', ['type' => 'email', 'label' => false, 'class' => '',]);
+				echo $this->Form->input('email', ['type' => 'email', 'label' => false, 'class' => '', 'readonly' => 'readonly', 'value' => $email]);
 				?>				
 			</td>
 		</tr>

@@ -272,34 +272,14 @@ class Defines {
 //		部品販売
 //--------------------------------------------------------------------------------
 	const SELL_PREFIX = 'HB';
-/*
-	商品選択⇒
-	商品内販売可能部品選択⇒
-	申し込み手続きの確認⇒
- * 部品販売に関する免責事項 ⇒
- * 個人情報の取り扱いに関するご案内⇒
- * 購入者情報等の入力⇒
- * 申し込み完了	
-*/
-	const SELL_PROGRESS_SELECT_PRODUCT = 0;
-	const SELL_PROGRESS_SELECT_PARTS = 1;
-	const SELL_PROGRESS_STEP_INFO = 2;
-	const SELL_PROGRESS_SELL_AGREEMENT = 3;
-	const SELL_PROGRESS_PRIVACY_AGREEMENT = 4;
+	const SELL_PROGRESS_STEP_INFO = 0;
+	const SELL_PROGRESS_SELL_AGREEMENT = 1;
+	const SELL_PROGRESS_PRIVACY_AGREEMENT = 2;
+	const SELL_PROGRESS_EMAIL_INPUT = 3;
+	const SELL_PROGRESS_EMAIL_SENDING = 4;
 	const SELL_PROGRESS_DATA_INPUT = 5;
 	const SELL_PROGRESS_END = 6;
-
 	const SELL_PROGRESS = [
-		self::SELL_PROGRESS_SELECT_PRODUCT => [
-			'label' => '商品選択',
-			'icon' => 'rocket',
-			'explain' => '一覧より商品を選択していただきます',
-		],
-		self::SELL_PROGRESS_SELECT_PARTS => [
-			'label' => '商品内部品選択',
-			'icon' => 'rocket',
-			'explain' => '部品の種類、数を指定していただきます',
-		],
 		self::SELL_PROGRESS_STEP_INFO => [
 			'label' => '申し込み手続きの確認',
 			'icon' => 'rocket',
@@ -315,8 +295,18 @@ class Defines {
 			'icon' => 'user',
 			'explain' => '個人情報取り扱い規約を確認して頂きます',
 		],
+		self::SELL_PROGRESS_EMAIL_INPUT => [
+			'label' => 'メールアドレスの入力',
+			'icon' => 'pencil',
+			'explain' => 'ご利用には、電子メールアドレスが必要です。<br>（携帯電話のメールアドレスはご利用になれません）',
+		],
+		self::SELL_PROGRESS_EMAIL_SENDING => [
+			'label' => '本人確認メールの受信',
+			'icon' => 'envelope-o',
+			'explain' => '前項で入力したメールアドレス宛に、確認メールが届きます。<br>	メールに記載のURLにアクセスし、画面に従って申し込みの手続きを進めてください。',
+		],
 		self::SELL_PROGRESS_DATA_INPUT => [
-			'label' => '購入者情報等の入力',
+			'label' => '部品購入情報等の入力',
 			'icon' => 'wrench',
 			'explain' => '部品購入情報やご訪問先など、必要な項目を入力し、送信してください',
 		],
@@ -325,7 +315,6 @@ class Defines {
 			'icon' => 'check-circle',
 			'explain' => '以上で、申込み手続き完了となります',
 		],
-		
 	];
 	const SELL_DATA_CODE = 0;
 	const SELL_DATA_DATE = 1;

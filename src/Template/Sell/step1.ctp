@@ -1,46 +1,54 @@
-<?php
+<?= $this->append('script',$this->Html->script('sell'))?>
+<h2 class="h2-type1">1400010 コンパクト高速ドリル</h2>
 
-use App\Defines\Defines;
-?>
-<br>
-
-<ol class="my-list2">
-	<li>部品販売期間について
-		<ul>
-			<li>製品廃番後でも部品の販売は行っておりますが、古い商品や部品の在庫状況によっては、予告なく販売を終了とさせていただく場合がございます。事前に「お問い合わせフォーム」よりお問い合わせを頂ければ、在庫の確認も含めてご回答いたします。</li>
-		</ul>
-	</li>
-	<li>部品についての免責事項
-		<ul>
-			<li>専門用語や汎用的な技術について、付属の説明書で解説していない場合もあります。ご不明の点はお問い合わせください。</li>
-			<li>部品によっては素材の性質上、または製造時期により色合い等が異なる場合がございます。</li>
-			<li>部品のお取扱い上のすべての責任は、購入者もしくは使用者が負います。</li>
-			<li>部品の価格は仕入れ状況等に応じて予告なく変更する場合があります。</li>
-		</ul>
-	</li>
-	<li>部品の梱包について
-		<ul>
-			<li>販売する部品によっては簡易包装にて発送する物もございます。ご了承ください。</li>
-		</ul>
-	</li>
-	<li>その他の注意事項
-		<ul>
-			<li>インターネットでのご注文は、ホームページ内の全ての内容について確認・同意されたものとして承ります。在庫状況・注文方法・掲載文等について予告なく変更する場合があります。</li>
-			<li>弊社商品のご注文は通信販売・弊社商品取扱店でのみ受け付けております。また、お問い合わせは弊社ホームページのお問い合わせフォームからのみ受け付けております。</li>
-			<li>当サイトに掲載されているイラスト等はイメージ等を基に表現しています。実物と多少異なる場合がございますが、ご了承ください。</li>
-		</ul>
-	</li>
-	<li>その他の免責事項
-		<ul>
-			<li>万一、お客様から入力して頂いたご注文内容に、入力ミスの懸念がある場合（例：ご注文数　正「１個」　誤「１１個」など）ご注文内容を確認させていただく場合がございます。その場合、電話・メール・ファックス・郵便等、状況に応じた手段を利用させて頂きます。</li>
-			<li>部品を購入する際は直接弊社よりお買い求め頂くか、弊社製品の取扱い店にてお買い求めください。ネットオークションや第三者よりご購入又は譲渡された部品は、返品や返金、クーリングオフ制度等の適用外となります。</li>
-		</ul>
-	</li>
-</ol>
-
-
-<div class="text-center">
-	<a href="<?= $this->Url->build(['action' => 'step2']) ?>" class="my-btn my-btn-primary">
-		<i class="fa fa-caret-right"></i> 合意する
-	</a>	
+<div class="parts-image">
+	<img src="../img/drill.png">
 </div>
+<?= $this->Form->create(NULL, ['url' => $this->Url->build(['action' => 'step19'], 1)]) ?>
+<table class="table table-bordered table-parts">
+	<thead>
+		<tr>
+			<th>
+				
+			</th>
+			<th class="text-center">
+				部品番号
+			</th>
+			<th class="text-center">
+				部品名
+			</th>
+			<th class="text-center">
+				単価
+			</th>
+			<th class="text-center">
+				数量
+			</th>
+			<th class="text-center">
+				備考
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+		for ($i = 1; $i <= 10; $i++):
+			$id = sprintf('000000%02d', $i);
+			$name = sprintf('部品%02d', $i);
+			$cost = $i * 1000;
+			$note = sprintf('備考%02d', $i);
+			?>
+			<tr>
+				<th class="check text-center"><i class="fa fa-square-o fa-fw fa-2x"</th>
+				<td><?= $id ?><?= $this->Form->hidden("parts.{$i}.id", ['value' => $id]) ?></td>
+				<td><?= $name ?><?= $this->Form->hidden("parts.{$i}.name", ['value' => $name]) ?></td>
+				<td class="text-right"><?= $cost ?><?= $this->Form->hidden("parts.{$i}.cost", ['value' => $cost]) ?></td>
+				<td><?= $this->Form->select("parts.{$i}.count",range(0,99),['class'=>'count']) ?></td>
+				<td><?= $note ?><?= $this->Form->hidden("parts.{$i}.note", ['value' => $note]) ?></td>
+			</tr>
+		<?php endfor ?>
+	</tbody>
+</table>
+<div class="text-center">
+	<a href="<?= $this->Url->build(['action' => 'step01']) ?>" class="my-btn">戻る</a>
+	<button class="my-btn my-btn-primary" type="submit" >購入依頼</button>
+</div>
+<?= $this->Form->end() ?>
