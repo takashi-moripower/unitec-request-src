@@ -26,6 +26,13 @@ abstract class BaseController extends AppController {
 		return TableRegistry::get(Inflector::pluralize($this->name));
 	}
 
+	/**
+	 * tokenの存在確認
+	 * なければNULL
+	 * @param type $token
+	 * @param type $checkTime
+	 * @return type
+	 */
 	protected function _checkToken($token, $checkTime = true) {
 		$table = $this->_getTable();
 
@@ -43,6 +50,10 @@ abstract class BaseController extends AppController {
 		return $entity;
 	}
 
+	/**
+	 * tokenを消去＝利用済みにする
+	 * @param type $entity
+	 */
 	protected function _clearToken( $entity ) {
 		$table = $this->_getTable();
 		$entity->token = NULL;

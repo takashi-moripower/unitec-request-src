@@ -57,6 +57,14 @@ class SellController extends BaseController {
 		$this->set('form',new SellForm);
 	}
 	
+	public function step51(){
+		
+	}
+	
+	protected function _setToken(){
+		$table = TableRegistry::get("Sells");
+		$entity = $table->newEntity();
+	}
 
 
 	protected function _saveData($data) {
