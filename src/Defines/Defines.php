@@ -292,12 +292,12 @@ class Defines {
 	const SELL_PROGRESS = [
 		self::SELL_PROGRESS_SELECT_PRODUCT => [
 			'label' => '商品選択',
-			'icon' => 'rocket',
+			'icon' => 'hand-pointer-o',
 			'explain' => '一覧より商品を選択していただきます',
 		],
 		self::SELL_PROGRESS_SELECT_PARTS => [
 			'label' => '商品内部品選択',
-			'icon' => 'rocket',
+			'icon' => 'wrench',
 			'explain' => '部品の種類、数を指定していただきます',
 		],
 		self::SELL_PROGRESS_STEP_INFO => [
@@ -317,7 +317,7 @@ class Defines {
 		],
 		self::SELL_PROGRESS_DATA_INPUT => [
 			'label' => '購入者情報等の入力',
-			'icon' => 'wrench',
+			'icon' => 'id-card-o',
 			'explain' => '部品購入情報やご訪問先など、必要な項目を入力し、送信してください',
 		],
 		self::SELL_PROGRESS_END => [

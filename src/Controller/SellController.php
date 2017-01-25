@@ -45,7 +45,8 @@ class SellController extends BaseController {
 				$parts_valid[] = $p;
 			}
 		}
-		$this->set('parts', $parts_valid);
+		
+		$this->request->session()->write('sell.parts',$parts_valid);
 		
 		return $this->redirect(['action'=>'step2']);
 	}
@@ -58,12 +59,48 @@ class SellController extends BaseController {
 	}
 	
 	public function step51(){
+		$entity = $this->_setToken();
 		
+		$form = new SellForm();
+		$form->setEntity( $entity );
+		
+		$data = $form->execute( $this->request->data );
+		$code = $data[Defines::SELL_DATA_CODE];
+		
+		$parts = $this->request->session()->read('sell.parts');
+		
+		foreach( $parts as &$part ){
+			//	パーツデータの先頭に注文コードを付与
+			array_unshift( $part ,  $code );
+		}
+		
+		$this->_saveData( $data );
+		
+		$this->_saveParts( $data , $parts );
+		
+		$this->_postComplete($data, $parts);
+		
+		$this->request->session()->write('sell.code',$code);
+		
+		return $this->redirect(['action'=>'step6']);
 	}
+	
+	public function step6(){
+		$code = $this->request->session()->read('sell.code');
+		$this->set('code',$code);
+		
+		$this->request->session()->write('sell',NULL);
+	}
+	
+	
 	
 	protected function _setToken(){
 		$table = TableRegistry::get("Sells");
 		$entity = $table->newEntity();
+		$entity->setSereal();
+		$table->save( $entity );
+		
+		return $entity;
 	}
 
 

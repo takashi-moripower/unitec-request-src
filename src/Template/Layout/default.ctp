@@ -50,8 +50,9 @@ $html5Shim = <<<HTML
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 HTML;
+
 $this->prepend('css', $this->Html->css(['//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css']));
-$this->prepend('css', $this->Html->css(['https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css']));
+$this->prepend('css', $this->Html->css(['https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css']));
 $this->prepend('css', $this->Html->css('style.css'));
 
 $this->append('css', $html5Shim);

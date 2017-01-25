@@ -10,5 +10,5 @@ for($i=1;$i<10;$i++){
 </ul>
 
 <div class="text-center">
-	<a href="<?= $this->Url->build(['action' => 'step51']) ?>" class="my-btn">戻る</a>
+	<a href="<?= $this->Url->build(['action' => 'step0']) ?>" class="my-btn">戻る</a>
 </div>

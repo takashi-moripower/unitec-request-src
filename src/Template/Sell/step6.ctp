@@ -6,7 +6,6 @@
 電話にてご連絡をお願いします。<br>
 <br>
 <?= $this->Element('html_footer') ?>
-<br>
 <div class="text-center">
 	<a href="<?= $this->Url->build('/') ?>" class="my-btn">戻る</a>
 </div>

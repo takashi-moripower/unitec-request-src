@@ -10,9 +10,15 @@ use Cake\ORM\TableRegistry;
 
 class SellForm extends BaseForm {
 
+	protected $_entity;
+	
 	public function __construct() {
 		$this->_tableName = 'sells';
 		$this->_mailTemplate = Defines::MAIL_TEMPLATE_SELL_COMPLETE;
+	}
+	
+	public function setEntity( $entity ){
+		$this->_entity = $entity;
 	}
 
 	protected function _buildSchema(Schema $schema) {
@@ -108,7 +114,14 @@ class SellForm extends BaseForm {
 		return $result;
 	}
 
-	protected function _execute(array $data) {
+	protected function _execute( array $data ){
+		$entity = $this->_entity;
+		
+		$result = $this->_getArrayedData( $entity , $data );
+		return $result;
+	}
+	
+	protected function _execute_old(array $data) {
 		$table = TableRegistry::get($this->_tableName);
 		$entity = $table->get($data['id']);
 

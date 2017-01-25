@@ -4,7 +4,7 @@
 <div class="parts-image">
 	<img src="../img/drill.png">
 </div>
-<?= $this->Form->create(NULL, ['url' => $this->Url->build(['action' => 'step19'], 1)]) ?>
+<?= $this->Form->create(NULL, ['url' =>  ['action' => 'step19']]) ?>
 <table class="table table-bordered table-parts">
 	<thead>
 		<tr>
