@@ -60,18 +60,21 @@ class Defines {
 		'replyTo' => self::MAIL_REPLY,
 	];
 	
+	const MAIL_TEMPLATE_COMPLETE = self::MAIL_TEMPLATE_BASE + [
+		'bcc' => 'komatsu@unitec-net.co.jp',
+//		複数のBCCを登録する場合は　[]で囲み　, で区切る
+//		'bcc'=>['tsukasa@moripower.jp','takashi@moripower.jp'],
+	];
+	
 	const MAIL_TEMPLATE_REPAIR_CHECK = self::MAIL_TEMPLATE_BASE + [
 		'template' => 'check',
 		'subject' => '修理受付サービス　本人確認手続き',
 		'service' => '修理受付',
 	];
 	
-	const MAIL_TEMPLATE_REPAIR_COMPLETE = self::MAIL_TEMPLATE_BASE + [
+	const MAIL_TEMPLATE_REPAIR_COMPLETE = self::MAIL_TEMPLATE_COMPLETE + [
 		'template' => 'repairComplete',
 		'subject' => '修理受付サービス　修理受付完了',
-		'bcc' => 'komatsu@unitec-net.co.jp',
-//		複数のBCCを登録する場合は　[]で囲み　, で区切る
-//		'bcc'=>['tsukasa@moripower.jp','takashi@moripower.jp'],
 	];
 	
 	const MAIL_TEMPLATE_INQUIRY_CHECK = self::MAIL_TEMPLATE_BASE + [
@@ -80,10 +83,9 @@ class Defines {
 		'service' => 'お問合せ受付',
 	];
 	
-	const MAIL_TEMPLATE_INQUIRY_COMPLETE = self::MAIL_TEMPLATE_BASE + [
+	const MAIL_TEMPLATE_INQUIRY_COMPLETE = self::MAIL_TEMPLATE_COMPLETE + [
 		'template' => 'inquiryComplete',
 		'subject' => 'お問合せ受付サービス　お問合せ受付完了',
-		'bcc' => 'komatsu@unitec-net.co.jp',
 	];
 	
 	const MAIL_TEMPLATE_SELL_CHECK = self::MAIL_TEMPLATE_BASE + [
@@ -92,10 +94,9 @@ class Defines {
 		'service' => '部品購入受付',
 	];
 	
-	const MAIL_TEMPLATE_SELL_COMPLETE = self::MAIL_TEMPLATE_BASE + [
+	const MAIL_TEMPLATE_SELL_COMPLETE = self::MAIL_TEMPLATE_COMPLETE + [
 		'template' => 'sellComplete',
 		'subject' => '部品購入受付サービス　部品購入受付完了',
-		'bcc' => 'komatsu@unitec-net.co.jp',
 	];
 
 	static function getTemplateCheck($type) {
