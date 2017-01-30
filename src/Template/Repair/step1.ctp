@@ -2,6 +2,9 @@
 
 use App\Defines\Defines;
 ?>
+<?= $this->Element('site_policy')?>
+<br>
+<h2>修理に関する免責事項</h2>
 <br>
 <ol class="my-list2">
 	<li>修理品の発送について

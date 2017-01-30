@@ -2,19 +2,19 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 class DebugController extends AppController{
 	public function index(){
+		$table = TableRegistry::get('postages');
 		
-//		$result = mkdir("/tmp/cindy/data", 0777 , true );
-//		chmod("/tmp/cindy/data" , 0777 );
-//		$result = rmdir("/tmp/cindy/data");
-//		$result = rmdir("/tmp/cindy");
+		$result = $table->find()
+				->where(['pref'=>'新潟県'])
+				->select('charge')
+				->hydrate(0)
+				->first();
 		
-		chmod("/tmp/cindy/data" , 0777 );
-		chmod("/tmp/cindy" , 0777 );
-		
-		$this->set('data','success');
-		$this->render('../Common/debug');
+		$this->set('data',$result);
+		$this->render('/Common/debug');
 	}
 }

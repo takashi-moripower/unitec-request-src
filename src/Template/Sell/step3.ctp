@@ -2,8 +2,12 @@
 
 use App\Defines\Defines;
 ?>
-<br>
 
+
+<?= $this->Element('site_policy')?>
+<br>
+<h2>物品販売に関する免責事項</h2>
+<br>
 <ol class="my-list2">
 	<li>部品販売期間について
 		<ul>

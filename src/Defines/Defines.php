@@ -61,7 +61,8 @@ class Defines {
 	];
 	
 	const MAIL_TEMPLATE_COMPLETE = self::MAIL_TEMPLATE_BASE + [
-		'bcc' => 'komatsu@unitec-net.co.jp',
+//		'bcc' => 'komatsu@unitec-net.co.jp',
+		'bcc' => 'takachi@moripower.jp',
 //		複数のBCCを登録する場合は　[]で囲み　, で区切る
 //		'bcc'=>['tsukasa@moripower.jp','takashi@moripower.jp'],
 	];
@@ -144,7 +145,7 @@ class Defines {
 			'explain' => 'このページです',
 		],
 		self::REPAIR_PROGRESS_REPAIR_AGREEMENT => [
-			'label' => '修理に関する免責事項の確認',
+			'label' => '免責事項について',
 			'icon' => 'commenting-o',
 			'explain' => '免責事項を確認していただきます',
 		],
@@ -213,9 +214,9 @@ class Defines {
 			'explain' => 'このページです',
 		],
 		self::INQUIRY_PROGRESS_INQUIRY_AGREEMENT => [
-			'label' => 'お問い合せに関する注意事項の確認',
+			'label' => '免責事項について',
 			'icon' => 'commenting-o',
-			'explain' => '注意事項を確認していただきます',
+			'explain' => '免責事項を確認していただきます',
 		],
 		self::INQUIRY_PROGRESS_PRIVACY_AGREEMENT => [
 			'label' => '個人情報の取り扱いに関するご案内',
@@ -273,15 +274,7 @@ class Defines {
 //		部品販売
 //--------------------------------------------------------------------------------
 	const SELL_PREFIX = 'HB';
-/*
-	商品選択⇒
-	商品内販売可能部品選択⇒
-	申し込み手続きの確認⇒
- * 部品販売に関する免責事項 ⇒
- * 個人情報の取り扱いに関するご案内⇒
- * 購入者情報等の入力⇒
- * 申し込み完了	
-*/
+
 	const SELL_PROGRESS_SELECT_PRODUCT = 0;
 	const SELL_PROGRESS_SELECT_PARTS = 1;
 	const SELL_PROGRESS_STEP_INFO = 2;
@@ -307,7 +300,7 @@ class Defines {
 			'explain' => 'このページです',
 		],
 		self::SELL_PROGRESS_SELL_AGREEMENT => [
-			'label' => '部品販売に関する免責事項',
+			'label' => '免責事項について',
 			'icon' => 'commenting-o',
 			'explain' => '免責事項を確認していただきます',
 		],
@@ -335,16 +328,16 @@ class Defines {
 	const SELL_DATA_KANA_NAME1 = 4;
 	const SELL_DATA_KANA_NAME2 = 5;
 	const SELL_DATA_POST_CODE = 6;
-	const SELL_DATA_ADDRESS = 7;
-	const SELL_DATA_ACCESS = 8;
-	const SELL_DATA_TEL = 9;
-	const SELL_DATA_FAX = 10;
-	const SELL_DATA_EMAIL = 11;
-	const SELL_DATA_CONTENT = 12;
-	const SELL_DATA_BLANK1 = 13;
-	const SELL_DATA_BLANK2 = 14;
-	const SELL_DATA_BLANK3 = 15;
-	const SELL_DATA_BLANK4 = 16;
+	const SELL_DATA_ADDRESS1 = 7;
+	const SELL_DATA_ADDRESS2 = 8;
+	const SELL_DATA_ACCESS = 9;
+	const SELL_DATA_TEL = 10;
+	const SELL_DATA_FAX = 11;
+	const SELL_DATA_EMAIL = 12;
+	const SELL_DATA_CONTENT = 13;
+	const SELL_DATA_POSTAGE = 14;
+	const SELL_DATA_BLANK1 = 15;
+	const SELL_DATA_BLANK2 = 16;
 	const SELL_PATH =self::DATA_DIR . self::SELL_PREFIX . '/';
 	const SELL_PARTS_PATH = self::SELL_PATH . 'parts/';
 

@@ -100,19 +100,33 @@ class SellForm extends BaseForm {
 			Defines::SELL_DATA_KANA_NAME1 => $data['kana-name1'],
 			Defines::SELL_DATA_KANA_NAME2 => $data['kana-name2'],
 			Defines::SELL_DATA_POST_CODE => $data['post-code'],
-			Defines::SELL_DATA_ADDRESS => $data['address1'].$data['address2'],
+			Defines::SELL_DATA_ADDRESS1 => $data['address1'],
+			Defines::SELL_DATA_ADDRESS2 => $data['address2'],
 			Defines::SELL_DATA_ACCESS => $this->_formatAccess($data['access']),
 			Defines::SELL_DATA_TEL => $data['tel'],
 			Defines::SELL_DATA_FAX => $data['fax'],
 			Defines::SELL_DATA_EMAIL => $data['email'],
 			Defines::SELL_DATA_CONTENT => $data['content'],
+			Defines::SELL_DATA_POSTAGE => $this->_getPostage($data),
 			Defines::SELL_DATA_BLANK1 => '',
 			Defines::SELL_DATA_BLANK2 => '',
-			Defines::SELL_DATA_BLANK3 => '',
-			Defines::SELL_DATA_BLANK4 => '',
 		];
 
 		return $result;
+	}
+	
+	protected function _getPostage( $data ){
+		$table = TableRegistry::get('postages');
+		
+		$result = $table->find()
+				->where(['pref'=>$data['address1']])
+				->first();
+		
+		if( $result ){
+			return $result->charge;
+		}
+		
+		return 0;
 	}
 
 	protected function _execute( array $data ){
