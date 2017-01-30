@@ -43,11 +43,12 @@ class InquiryForm extends BaseForm {
 			'address1',
 			'address2',
 			'email',
+			'tel',
 			'product',
 			'content',
 		]);
 
-		$validator->allowEmpty(['tel', 'fax']);
+		$validator->allowEmpty(['fax']);
 
 		$validator->add('name1', 'custom', [
 			'rule' => [$this, 'checkZenkaku'],

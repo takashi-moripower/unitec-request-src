@@ -50,9 +50,10 @@ class SellForm extends BaseForm {
 			'address1',
 			'address2',
 			'email',
+			'tel',
 		]);
 
-		$validator->allowEmpty(['tel', 'fax', 'content']);
+		$validator->allowEmpty(['fax', 'content']);
 
 		$validator->add('name1', 'custom', [
 			'rule' => [$this, 'checkZenkaku'],

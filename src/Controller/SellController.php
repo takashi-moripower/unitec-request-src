@@ -29,7 +29,13 @@ class SellController extends BaseController {
 		
 	}
 	
-	public function step01(){}
+	public function step01($src = ''){
+		$this->set('src',$src);
+	}
+	
+	public function step1($src = ''){
+		$this->set('src',$src);
+	}
 	
 	public function step19(){
 		if (!$this->request->is('post', 'put', 'patch')) {

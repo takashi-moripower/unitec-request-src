@@ -2,9 +2,9 @@
 <h2 class="h2-type1">1400010 コンパクト高速ドリル</h2>
 
 <div class="parts-image">
-	<img src="../img/drill.png">
+	<img src="<?= $this->Url->build('/img/drill.png')?>">
 </div>
-<?= $this->Form->create(NULL, ['url' => $this->Url->build(['action' => 'step59'], 1)]) ?>
+<?= $this->Form->create(NULL, ['url' =>  ['action' => 'step19']]) ?>
 <table class="table table-bordered table-parts">
 	<thead>
 		<tr>
@@ -48,7 +48,7 @@
 	</tbody>
 </table>
 <div class="text-center">
-	<a href="<?= $this->Url->build(['action' => 'step52']) ?>" class="my-btn">戻る</a>
+	<a href="<?= $this->Url->build(['action' => 'step01']) ?>" class="my-btn">戻る</a>
 	<button class="my-btn my-btn-primary" type="submit" >購入依頼</button>
 </div>
 <?= $this->Form->end() ?>
