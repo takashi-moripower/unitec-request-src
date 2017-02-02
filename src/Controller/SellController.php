@@ -62,18 +62,38 @@ class SellController extends BaseController {
 	
 	public function step5($arg1=NULL , $arg2 = NULL){
 		$this->set('form',new SellForm);
+		
+		if( $this->request->is('post')){
+			return $this->step51();
+		}
+		
 	}
 	
 	public function step51(){
+	
 		$entity = $this->_setToken();
 		
 		$form = new SellForm();
 		$form->setEntity( $entity );
 		
 		$data = $form->execute( $this->request->data );
+		
+		if( empty( $data )){
+			$this->set('form', $form );
+			return;
+		}
+
+		$parts = $this->request->session()->read('sell.parts');
+		if( empty($parts) ){
+			$this->render('step5_error');
+			return;
+		}else{
+			$this->request->session()->write('sell.parts',null);
+		}
+		
+		
 		$code = $data[Defines::SELL_DATA_CODE];
 		
-		$parts = $this->request->session()->read('sell.parts');
 		
 		foreach( $parts as &$part ){
 			//	パーツデータの先頭に注文コードを付与
