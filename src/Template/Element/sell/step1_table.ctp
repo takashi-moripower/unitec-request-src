@@ -12,7 +12,7 @@
 				部品名
 			</th>
 			<th class="text-center">
-				単価
+				単価（税抜き）
 			</th>
 			<th class="text-center">
 				数量
