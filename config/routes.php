@@ -55,9 +55,14 @@ Router::scope('/', function (RouteBuilder $routes) {
 	 * ...and connect the rest of 'Pages' controller's URLs.
 	 */
 	$routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
-	$routes->connect('/parts_sales/:action/*', ['controller' => 'sell' ]);
-	$routes->connect('/repair_reception/:action/*', ['controller' => 'repair' ]);
-	$routes->connect('/contact/:action/*', ['controller' => 'inquiry' ]);
+
+	$routes->connect('/parts_sales/', ['controller' => 'sell', 'action' => 'index']);
+	$routes->connect('/repair_reception/', ['controller' => 'repair', 'action' => 'index']);
+	$routes->connect('/contact/', ['controller' => 'inquiry', 'action' => 'index']);
+
+	$routes->connect('/parts_sales/:action/*', ['controller' => 'sell']);
+	$routes->connect('/repair_reception/:action/*', ['controller' => 'repair']);
+	$routes->connect('/contact/:action/*', ['controller' => 'inquiry']);
 
 	/**
 	 * Connect catchall routes for all controllers.
