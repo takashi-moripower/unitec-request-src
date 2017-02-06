@@ -27,9 +27,7 @@ $this->end();
 					<?= $this->Html->link('サイト運営に関する免責事項',['controller'=>'pages', 'action'=>'display','site_policy'] ) ?>
 				</li>
 			</ul>
-
-			20170202
-
+			20170206
 		</div>
 	</div>
 </div>

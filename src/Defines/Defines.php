@@ -43,7 +43,8 @@ class Defines {
 		return implode(',', $access_text);
 	}
 	
-	const DATA_DIR = '/tmp/cindy/data/';
+//	const DATA_DIR = '/tmp/cindy/data/';
+	const DATA_DIR = '/home/moripower4/tmp/cindy/data/';
 
 //--------------------------------------------------------------------------------
 //		Email
