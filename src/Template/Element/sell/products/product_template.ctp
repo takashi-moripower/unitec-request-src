@@ -37,7 +37,6 @@ $parts = [
 
 $category_page = "category01";
 
-$img_base = $this->Url->build("/img");
 ?>
 
 <h2 class="h2-type1"><?= $product_name ?></h2>

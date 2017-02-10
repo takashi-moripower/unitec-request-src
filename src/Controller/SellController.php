@@ -6,7 +6,7 @@ use App\Defines\Defines;
 use App\Form\SellForm;
 use SplFileObject;
 use Cake\ORM\TableRegistry;
-
+use Cake\Core\Configure;
 /**
  * Repair Controller
  *
@@ -35,6 +35,7 @@ class SellController extends BaseController {
 	
 	public function step1($src = ''){
 		$this->set('src',$src);
+		$this->set('img_base',Configure::read('templates.img_base'));
 	}
 	
 	public function step19(){
