@@ -7,8 +7,7 @@ class Defines {
 //--------------------------------------------------------------------------------
 //		共通
 //--------------------------------------------------------------------------------
-//	const TOKEN_TIME_LIMIT = 30;
-	const TOKEN_TIME_LIMIT = 60 * 24 * 7;
+	const TOKEN_TIME_LIMIT = 30;
 
 	const ACCESS_EMAIL = 1;
 	const ACCESS_TEL = 2;
@@ -43,8 +42,7 @@ class Defines {
 		return implode(',', $access_text);
 	}
 	
-//	const DATA_DIR = '/tmp/cindy/data/';
-	const DATA_DIR = '/home/moripower4/tmp/cindy/data/';
+	const DATA_DIR = '/var/www/cindy/';
 
 //--------------------------------------------------------------------------------
 //		Email
@@ -62,8 +60,7 @@ class Defines {
 	];
 	
 	const MAIL_TEMPLATE_COMPLETE = self::MAIL_TEMPLATE_BASE + [
-//		'bcc' => 'komatsu@unitec-net.co.jp',
-		'bcc' => 'takachi@moripower.jp',
+		'bcc' => 'komatsu@unitec-net.co.jp',
 //		複数のBCCを登録する場合は　[]で囲み　, で区切る
 //		'bcc'=>['tsukasa@moripower.jp','takashi@moripower.jp'],
 	];
