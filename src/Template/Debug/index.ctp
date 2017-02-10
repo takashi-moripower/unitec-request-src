@@ -3,6 +3,8 @@ $urls = [];
 $urls[] = ['controller' => 'pages', 'action' => 'display', 'home'];
 $urls[] = ['controller' => 'pages', 'action' => 'display', 'cat01'];
 $urls[] = ['controller'=>'sell','action'=>'index'];
+$urls[] = ['controller'=>'repair','action'=>'index'];
+$urls[] = ['controller'=>'inquiry','action'=>'index'];
 
 ?>
 

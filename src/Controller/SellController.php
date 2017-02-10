@@ -84,6 +84,7 @@ class SellController extends BaseController {
 		}
 
 		$parts = $this->request->session()->read('sell.parts');
+
 		if( empty($parts) ){
 			$this->render('step5_error');
 			return;
