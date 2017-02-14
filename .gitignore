@@ -3,3 +3,8 @@
 /tmp/*
 /logs/*
 nbproject
+/src/Template/Element/sell/categories/category01.ctp
+/src/Template/Element/sell/categories/category_template.ctp
+/src/Template/Element/sell/junles/junles.ctp
+/src/Template/Element/sell/products/product01.ctp
+/src/Template/Element/sell/products/product_template.ctp
