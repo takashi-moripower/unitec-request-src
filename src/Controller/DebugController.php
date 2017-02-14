@@ -7,4 +7,7 @@ use Cake\ORM\TableRegistry;
 class DebugController extends AppController{
 	public function index(){
 	}
+	
+	public function error(){
+	}
 }

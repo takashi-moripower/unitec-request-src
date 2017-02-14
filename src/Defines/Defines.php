@@ -42,6 +42,7 @@ class Defines {
 		return implode(',', $access_text);
 	}
 	
+//	const DATA_DIR = '/home/moripower4/cake3/unitec_takagi/data/';
 	const DATA_DIR = '/var/www/cindy/';
 
 //--------------------------------------------------------------------------------
@@ -49,23 +50,24 @@ class Defines {
 //--------------------------------------------------------------------------------
 	const MAIL_FROM =  ["info@takagi-plc.jp" => '株式会社　高儀'];
 	const MAIL_SENDER = self::MAIL_FROM;
-	const MAIL_REPLY = "komatsu@unitec-net.co.jp";
+	const MAIL_REPLY = "support@takagi-plc.co.jp";
 	
 	const MAIL_TEMPLATE_BASE = [
-//		'transport'=>'default',
 		'transport' => 'smtp',
 		'sender' => self::MAIL_SENDER,
 		'from' => self::MAIL_FROM,
 		'replyTo' => self::MAIL_REPLY,
 	];
 	
+	const MAIL_TEMPLATE_CHECK = self::MAIL_TEMPLATE_BASE;
+	
 	const MAIL_TEMPLATE_COMPLETE = self::MAIL_TEMPLATE_BASE + [
-		'bcc' => 'komatsu@unitec-net.co.jp',
+		'bcc' => 'support@takagi-plc.co.jp',
 //		複数のBCCを登録する場合は　[]で囲み　, で区切る
 //		'bcc'=>['tsukasa@moripower.jp','takashi@moripower.jp'],
 	];
 	
-	const MAIL_TEMPLATE_REPAIR_CHECK = self::MAIL_TEMPLATE_BASE + [
+	const MAIL_TEMPLATE_REPAIR_CHECK = self::MAIL_TEMPLATE_CHECK + [
 		'template' => 'check',
 		'subject' => '修理受付サービス　本人確認手続き',
 		'service' => '修理受付',
@@ -76,7 +78,7 @@ class Defines {
 		'subject' => '修理受付サービス　修理受付完了',
 	];
 	
-	const MAIL_TEMPLATE_INQUIRY_CHECK = self::MAIL_TEMPLATE_BASE + [
+	const MAIL_TEMPLATE_INQUIRY_CHECK = self::MAIL_TEMPLATE_CHECK + [
 		'template' => 'check',
 		'subject' => 'お問合せ受付サービス　本人確認手続き',
 		'service' => 'お問合せ受付',
@@ -87,7 +89,7 @@ class Defines {
 		'subject' => 'お問合せ受付サービス　お問合せ受付完了',
 	];
 	
-	const MAIL_TEMPLATE_SELL_CHECK = self::MAIL_TEMPLATE_BASE + [
+	const MAIL_TEMPLATE_SELL_CHECK = self::MAIL_TEMPLATE_CHECK + [
 		'template' => 'check',
 		'subject' => '部品購入受付サービス　本人確認手続き',
 		'service' => '部品購入受付',
@@ -279,7 +281,8 @@ class Defines {
 	const SELL_PROGRESS_SELL_AGREEMENT = 3;
 	const SELL_PROGRESS_PRIVACY_AGREEMENT = 4;
 	const SELL_PROGRESS_DATA_INPUT = 5;
-	const SELL_PROGRESS_END = 6;
+	const SELL_PROGRESS_DATA_CHECK = 6;
+	const SELL_PROGRESS_END = 7;
 
 	const SELL_PROGRESS = [
 		self::SELL_PROGRESS_SELECT_PRODUCT => [
@@ -310,6 +313,11 @@ class Defines {
 		self::SELL_PROGRESS_DATA_INPUT => [
 			'label' => '購入者情報等の入力',
 			'icon' => 'id-card-o',
+			'explain' => '部品購入情報やご訪問先など、必要な項目を入力し、送信してください',
+		],
+		self::SELL_PROGRESS_DATA_CHECK => [
+			'label' => '部品情報の確認',
+			'icon' => 'question-circle-o',
 			'explain' => '部品購入情報やご訪問先など、必要な項目を入力し、送信してください',
 		],
 		self::SELL_PROGRESS_END => [

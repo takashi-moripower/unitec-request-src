@@ -65,13 +65,11 @@ class SellController extends BaseController {
 		$this->set('form',new SellForm);
 		
 		if( $this->request->is('post')){
-			return $this->step51();
+			return $this->_step51();
 		}
-		
 	}
 	
-	public function step51(){
-	
+	protected function _step51(){
 		$entity = $this->_setToken();
 		
 		$form = new SellForm();
@@ -79,6 +77,7 @@ class SellController extends BaseController {
 		
 		$data = $form->execute( $this->request->data );
 		
+		//フォーム入力が不正だった場合
 		if( empty( $data )){
 			$this->set('form', $form );
 			return;
@@ -86,38 +85,51 @@ class SellController extends BaseController {
 
 		$parts = $this->request->session()->read('sell.parts');
 
+		//パーツデータが存在しない＝「戻る」で無理やり移動したパターン？
 		if( empty($parts) ){
 			$this->render('step5_error');
 			return;
-		}else{
-			$this->request->session()->write('sell.parts',null);
 		}
 		
+		$this->request->session()->write('sell.data',$data);
+		
+		$this->redirect(['action'=> 'step6']);
+	}
+	
+	public function step6(){
+		$parts = $this->request->session()->read('sell.parts');
+		$data = $this->request->session()->read('sell.data');
+		
+		$this->set('parts',$parts);
+		$this->set('data',$data);
+	}
+	
+
+	public function step7(){
+		$this->_save();
+		
+		$code = $this->request->session()->read('sell.code');
+		$this->set('code',$code);
+		
+		$this->request->session()->write('sell',NULL);
+	}
+	
+	protected function _save(){
+		$data = $this->request->session()->read('sell.data');
+		$parts = $this->request->session()->read('sell.parts');
 		
 		$code = $data[Defines::SELL_DATA_CODE];
-		
-		
+
 		foreach( $parts as &$part ){
 			//	パーツデータの先頭に注文コードを付与
 			array_unshift( $part ,  $code );
 		}
-		
+
 		$this->_saveData( $data );
 		
 		$this->_saveParts( $data , $parts );
 		
 		$this->_postComplete($data, $parts);
-		
-		$this->request->session()->write('sell.code',$code);
-		
-		return $this->redirect(['action'=>'step6']);
-	}
-	
-	public function step6(){
-		$code = $this->request->session()->read('sell.code');
-		$this->set('code',$code);
-		
-		$this->request->session()->write('sell',NULL);
 	}
 	
 	
