@@ -40,16 +40,16 @@ $access_name = Defines::ACCESS_NAME;
 			<td class="text-right">￥<?= number_format($sum_all) ?></td>
 		</tr>
 		<tr>
-			<td colspan="3">消費税</td>
-			<td class="text-right">￥<?= number_format($sum_all * 0.08) ?></td>
+			<td colspan="3">送料</td>
+			<td class="text-right">￥<?= number_format($postage) ?></td>
 		</tr>
 		<tr>
-			<td colspan="3">送料</td>
-			<td class="text-right">￥<?= number_format($data[Defines::SELL_DATA_POSTAGE]) ?></td>
+			<td colspan="3">消費税</td>
+			<td class="text-right">￥<?= number_format(($sum_all + $postage) * 0.08) ?></td>
 		</tr>
 		<tr>
 			<td colspan="3">合計</td>
-			<td class="text-right">￥<?= number_format($sum_all * 1.08 + $postage) ?></td>
+			<td class="text-right">￥<?= number_format(($sum_all + $postage) * 1.08) ?></td>
 		</tr>
 	</thead>
 </table>

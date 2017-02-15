@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Defines\Defines;
 use App\Form\InquiryForm;
+use Core\Configure;
 /**
  * Repair Controller
  *
@@ -15,7 +16,7 @@ class InquiryController  extends BaseController {
 		parent::initialize();
 		$this->loadComponent('SaveCsv');
 		$this->viewBuilder()->layout('progress');
-		$this->_filePath = Defines::INQUIRY_PATH;
+		$this->_filePath = Configure::read('data_dir') . Defines::INQUIRY_PREFIX . '/';
 	}
 	
 	protected function _getForm(){

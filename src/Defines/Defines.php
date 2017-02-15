@@ -42,8 +42,6 @@ class Defines {
 		return implode(',', $access_text);
 	}
 	
-//	const DATA_DIR = '/home/moripower4/cake3/unitec_takagi/data/';
-	const DATA_DIR = '/var/www/cindy/';
 
 //--------------------------------------------------------------------------------
 //		Email
@@ -194,7 +192,6 @@ class Defines {
 	const REPAIR_DATA_BUY_YEAR = 15;
 	const REPAIR_DATA_BUY_MONTH = 16;
 	
-	const REPAIR_PATH =self::DATA_DIR . self::REPAIR_PREFIX . '/';
 //--------------------------------------------------------------------------------
 //		問合せ
 //--------------------------------------------------------------------------------
@@ -269,7 +266,7 @@ class Defines {
 		3 => 'キッチン用品に関するお問い合わせ',
 		4 => 'その他のお問い合わせ',
 	];
-	const INQUIRY_PATH =self::DATA_DIR . self::INQUIRY_PREFIX . '/';
+
 //--------------------------------------------------------------------------------
 //		部品販売
 //--------------------------------------------------------------------------------
@@ -344,7 +341,5 @@ class Defines {
 	const SELL_DATA_POSTAGE = 14;
 	const SELL_DATA_BLANK1 = 15;
 	const SELL_DATA_BLANK2 = 16;
-	const SELL_PATH =self::DATA_DIR . self::SELL_PREFIX . '/';
-	const SELL_PARTS_PATH = self::SELL_PATH . 'parts/';
 
 }

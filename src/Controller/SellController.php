@@ -18,7 +18,7 @@ class SellController extends BaseController {
 		parent::initialize();
 		$this->loadComponent('SaveCsv');
 		$this->viewBuilder()->layout('progress');
-		$this->_filePath = Defines::SELL_PATH;
+		$this->_filePath = Configure::read('data_dir') . Defines::SELL_PREFIX . '/';
 	}
 
 	protected function _getForm() {
@@ -164,7 +164,7 @@ class SellController extends BaseController {
 
 		$csv = $this->SaveCsv->getBody2($parts);
 		$filename = $data[Defines::SELL_DATA_CODE] . '.csv';
-		$path = Defines::SELL_PARTS_PATH;
+		$path = $this->_filePath.'/parts/';
 		
 		$this->_checkPath( $path );
 

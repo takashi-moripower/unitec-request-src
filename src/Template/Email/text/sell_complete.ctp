@@ -51,13 +51,15 @@ endforeach;
 ?>
 
 
-小計　￥<?= number_format($sum_all) ?>
-
-消費税￥<?= number_format($sum_all * 0.08) ?>
+購入額計　￥<?= number_format($sum_all) ?>
 
 送料　￥<?= number_format($postage) ?>
 
-合計　￥<?= number_format($sum_all * 1.08 + $postage) ?>
+
+消費税￥<?= number_format(($sum_all+$postage) * 0.08) ?>
+
+
+合計　￥<?= number_format(($sum_all+$postage) * 1.08) ?>
 
 
 -------------------------------------------------------------------------------

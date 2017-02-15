@@ -7,7 +7,7 @@
 <br>
 <?= $this->Element('html_footer') ?>
 <div class="text-center">
-	<a href="<?= $this->Url->build('/') ?>" class="my-btn">戻る</a>
+	<a href="<?= $this->Url->build(['controller'=>'sell','action'=>'step0']) ?>" class="my-btn">戻る</a>
 </div>
 
 

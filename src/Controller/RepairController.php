@@ -15,7 +15,7 @@ class RepairController  extends BaseController {
 		parent::initialize();
 		$this->loadComponent('SaveCsv');
 		$this->viewBuilder()->layout('progress');
-		$this->_filePath = Defines::REPAIR_PATH;
+		$this->_filePath = Configure::read('data_dir') . Defines::REPAIR_PREFIX . '/';
 	}
 	
 	protected function _getForm(){
