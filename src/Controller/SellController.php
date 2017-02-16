@@ -108,7 +108,8 @@ class SellController extends BaseController {
 	public function step7(){
 		$this->_save();
 		
-		$code = $this->request->session()->read('sell.code');
+		$data = $this->request->session()->read('sell.data');
+		$code = $data[Defines::SELL_DATA_CODE];
 		$this->set('code',$code);
 		
 		$this->request->session()->write('sell',NULL);

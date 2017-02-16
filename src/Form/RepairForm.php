@@ -49,27 +49,33 @@ class RepairForm extends BaseForm {
 		]);
 
 		$validator->allowEmpty(['fax']);
-		
+
 		$validator->add('name1', 'custom', [
 			'rule' => [$this, 'checkZenkaku'],
 			'message' => '全角文字で入力してください'
 		]);
+		$validator->maxLength('name1', 20, '20文字以内で入力してください');
+
 		$validator->add('name2', 'custom', [
 			'rule' => [$this, 'checkZenkaku'],
 			'message' => '全角文字で入力してください'
 		]);
+		$validator->maxLength('name2', 20, '20文字以内で入力してください');
 
 		$validator->add('kana-name1', 'custom', [
 			'rule' => [$this, 'checkKana'],
 			'message' => '全角カタカナで入力してください'
 		]);
+		$validator->maxLength('kana-name1', 20, '20文字以内で入力してください');
+
 		$validator->add('kana-name2', 'custom', [
 			'rule' => [$this, 'checkKana'],
 			'message' => '全角カタカナで入力してください'
 		]);
+		$validator->maxLength('kana-name2', 20, '20文字以内で入力してください');
 
 		$validator->notEmpty('access', '連絡手段を選択してください');
-		
+
 		$validator->add('access', 'custom', [
 			'rule' => [$this, 'checkAccess'],
 			'message' => '選択された連絡方法が空欄です'
@@ -79,6 +85,13 @@ class RepairForm extends BaseForm {
 			'rule' => [$this, 'checkPost'],
 			'message' => '半角数字のみ　7桁で入力してください'
 		]);
+		
+		$validator->maxLength('address',200,'200文字以内で入力してください');
+		$validator->maxLength('tel',15,'15文字以内で入力してください');
+		$validator->maxLength('fax',15,'15文字以内で入力してください');
+		$validator->maxLength('email',100,'100文字以内で入力してください');
+		$validator->maxLength('content',2000,'2000文字以内で入力してください');
+		
 
 		return $validator;
 	}
@@ -95,8 +108,8 @@ class RepairForm extends BaseForm {
 			Defines::REPAIR_DATA_KANA_NAME1 => $data['kana-name1'],
 			Defines::REPAIR_DATA_KANA_NAME2 => $data['kana-name2'],
 			Defines::REPAIR_DATA_POST_CODE => $data['post-code'],
-			Defines::REPAIR_DATA_ADDRESS => $data['address1'].$data['address2'],
-			Defines::REPAIR_DATA_ACCESS => $this->_formatAccess( $data['access']),
+			Defines::REPAIR_DATA_ADDRESS => $data['address1'] . $data['address2'],
+			Defines::REPAIR_DATA_ACCESS => $this->_formatAccess($data['access']),
 			Defines::REPAIR_DATA_TEL => $data['tel'],
 			Defines::REPAIR_DATA_FAX => $data['fax'],
 			Defines::REPAIR_DATA_EMAIL => $data['email'],

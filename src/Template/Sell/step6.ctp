@@ -53,6 +53,11 @@ $access_name = Defines::ACCESS_NAME;
 		</tr>
 	</thead>
 </table>
+<ul class="my-list1">
+	<li>
+		ヤマト運輸による代金引換になります
+	</li>
+</ul>
 
 <div class="text-center">
 	<a href="<?= $this->Url->build(['action' => 'step0']) ?>" class="my-btn">戻る</a>

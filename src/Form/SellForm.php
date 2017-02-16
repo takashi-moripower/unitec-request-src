@@ -59,19 +59,26 @@ class SellForm extends BaseForm {
 			'rule' => [$this, 'checkZenkaku'],
 			'message' => '全角文字で入力してください'
 		]);
+		
+		$validator->maxLength('name1',20,'20文字以内で入力してください');
+		
 		$validator->add('name2', 'custom', [
 			'rule' => [$this, 'checkZenkaku'],
 			'message' => '全角文字で入力してください'
 		]);
+		$validator->maxLength('name2',20,'20文字以内で入力してください');
 
 		$validator->add('kana-name1', 'custom', [
 			'rule' => [$this, 'checkKana'],
 			'message' => '全角カタカナで入力してください'
 		]);
+		$validator->maxLength('kana-name2',20,'20文字以内で入力してください');
+		
 		$validator->add('kana-name2', 'custom', [
 			'rule' => [$this, 'checkKana'],
 			'message' => '全角カタカナで入力してください'
 		]);
+		$validator->maxLength('kana-name2',20,'20文字以内で入力してください');
 
 		$validator->notEmpty('access', '連絡手段を選択してください');
 
@@ -84,6 +91,17 @@ class SellForm extends BaseForm {
 			'rule' => [$this, 'checkPost'],
 			'message' => '半角数字のみ　7桁で入力してください'
 		]);
+		
+		$validator->add('address2','custom',[
+			'rule'=>[$this,'checkAddressLength'],
+			'message'=>'住所は合計200文字以内で入力してください'
+		]);
+		
+		$validator->maxLength('tel',15,'15文字以内で入力してください');
+		$validator->maxLength('fax',15,'15文字以内で入力してください');
+		$validator->maxLength('email',100,'100文字以内で入力してください');
+		$validator->maxLength('content',2000,'2000文字以内で入力してください');
+		
 
 		return $validator;
 	}
