@@ -49,8 +49,8 @@ $this->Form->templates([
 				<div class="post-icon">〒</div><?= $this->Form->input('post-code', ['type' => 'text', 'label' => false, 'class' => 'p-postal-code']); ?>
 				<span> ※ ハイフンなしの半角数字7桁で入力してください。</span>
 
-				<?= $this->Form->input('address1', ['type' => 'text', 'label' => false, 'class' => 'p-region' , 'placeholder'=>'都道府県']); ?><br>
-				<?= $this->Form->input('address2', ['type' => 'text', 'label' => false, 'class' => 'p-locality p-street-address p-extended-address' , 'placeholder'=>'市町村・番地・建物']); ?>
+				<?= $this->Form->input('address1', ['type' => 'text', 'label' => false, 'class' => 'p-region', 'placeholder' => '都道府県']); ?><br>
+				<?= $this->Form->input('address2', ['type' => 'text', 'label' => false, 'class' => 'p-locality p-street-address p-extended-address', 'placeholder' => '市町村・番地・建物']); ?>
 			</td>
 		</tr>
 		<tr>
@@ -64,7 +64,6 @@ $this->Form->templates([
 				?>
 				<div class="form-group <?= $access_error ? 'has-error' : '' ?>">
 					<?php
-
 					echo $this->Form->select('access', $access_types, ['multiple' => 'checkbox', 'default' => Defines::ACCESS_DEFAULT]);
 
 					if ($access_error) {
@@ -113,7 +112,7 @@ $this->Form->templates([
 				連絡メモ<br>
 			</th>
 			<td>
-				<?= $this->Form->textArea('content', ['placeHolder' => '200文字以内で入力してください']); ?>
+				<?= $this->Form->input('content', ['type' => 'textArea', 'placeHolder' => '2000文字以内で入力してください', 'label' => false]); ?>
 				<br>
 			</td>
 		</tr>

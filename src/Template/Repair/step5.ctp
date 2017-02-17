@@ -126,7 +126,7 @@ $this->Form->templates([
 			</th>
 			<td class="product">
 				<?php
-				echo $this->Form->input('product', ['type' => 'fax', 'label' => false, 'class' => '']);
+				echo $this->Form->input('product', ['type' => 'text', 'label' => false, 'class' => '']);
 				?>
 				<div class="comment">※ 商品名や型式、JANコードを入力してください。 JANコードとは</div>
 			</td>
@@ -154,7 +154,7 @@ $this->Form->templates([
 				故障内容
 			</th>
 			<td>
-				<?= $this->Form->textArea('content', ['placeHolder' => '200文字以内で入力してください']); ?>
+				<?= $this->Form->input('content', ['type' => 'textArea', 'placeHolder' => '2000文字以内で入力してください', 'label' => false]); ?>
 				<br>
 			</td>
 		</tr>

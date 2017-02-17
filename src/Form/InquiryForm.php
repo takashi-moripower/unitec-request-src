@@ -27,7 +27,7 @@ class InquiryForm extends BaseForm {
 					'tel' => 'string',
 					'fax' => 'string',
 					'email' => 'email',
-					'content' => 'text',
+					'content' => 'string',
 					'product' => 'string',
 					'category' => 'date',
 		]);

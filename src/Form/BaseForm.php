@@ -38,7 +38,7 @@ abstract class BaseForm extends Form {
 		$address1 = $context['data']['address1'];
 		$address2 = $context['data']['address2'];
 				
-		if(strlen( $address1 . $address2 ) > 200){
+		if(mb_strlen( $address1 . $address2 ) > 200){
 			return false;
 		}
 		return true;

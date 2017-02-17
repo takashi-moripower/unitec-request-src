@@ -72,7 +72,7 @@ class SellForm extends BaseForm {
 			'rule' => [$this, 'checkKana'],
 			'message' => '全角カタカナで入力してください'
 		]);
-		$validator->maxLength('kana-name2',20,'20文字以内で入力してください');
+		$validator->maxLength('kana-name1',20,'20文字以内で入力してください');
 		
 		$validator->add('kana-name2', 'custom', [
 			'rule' => [$this, 'checkKana'],

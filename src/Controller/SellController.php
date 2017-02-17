@@ -103,7 +103,6 @@ class SellController extends BaseController {
 		$this->set('parts',$parts);
 		$this->set('data',$data);
 	}
-	
 
 	public function step7(){
 		$this->_save();
@@ -132,8 +131,6 @@ class SellController extends BaseController {
 		
 		$this->_postComplete($data, $parts);
 	}
-	
-	
 	
 	protected function _setToken(){
 		$table = TableRegistry::get("Sells");

@@ -315,7 +315,7 @@ class Defines {
 		self::SELL_PROGRESS_DATA_CHECK => [
 			'label' => '部品情報の確認',
 			'icon' => 'question-circle-o',
-			'explain' => '部品購入情報やご訪問先など、必要な項目を入力し、送信してください',
+			'explain' => '選択して頂いた情報の確認をして頂きます',
 		],
 		self::SELL_PROGRESS_END => [
 			'label' => '申し込み完了',

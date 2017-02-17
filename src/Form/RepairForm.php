@@ -29,7 +29,7 @@ class RepairForm extends BaseForm {
 					'fax' => 'string',
 					'product' => 'string',
 					'date' => 'date',
-					'content' => 'text'
+					'content' => 'string'
 		]);
 	}
 

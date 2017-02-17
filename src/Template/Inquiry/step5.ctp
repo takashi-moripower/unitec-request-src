@@ -154,7 +154,7 @@ $this->Form->templates([
 				お問い合わせ<br>内容
 			</th>
 			<td>
-				<?= $this->Form->textArea('content', ['placeHolder' => '200文字以内で入力してください']); ?>
+				<?= $this->Form->input('content', ['type' => 'textArea', 'placeHolder' => '2000文字以内で入力してください', 'label' => false]); ?>
 				<br>
 			</td>
 		</tr>
