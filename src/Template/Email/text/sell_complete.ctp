@@ -22,11 +22,11 @@ use App\Defines\Defines;
 メールアドレス：<?= $data[Defines::SELL_DATA_EMAIL] ?>
 
 <?php if (!empty($data[Defines::SELL_DATA_TEL])): ?>
-	　　　　　電話：<?= $data[Defines::SELL_DATA_TEL] ?>
+		　　　　　電話：<?= $data[Defines::SELL_DATA_TEL] ?>
 
 <?php endif ?>
 <?php if (!empty($data[Defines::SELL_DATA_FAX])): ?>
-	　　　　　 FAX：<?= $data[Defines::SELL_DATA_FAX] ?>
+		　　　　　 FAX：<?= $data[Defines::SELL_DATA_FAX] ?>
 
 <?php endif ?>
 
@@ -47,7 +47,6 @@ foreach ($parts as $p):
 
 	<?php
 endforeach;
-
 ?>
 
 
@@ -56,10 +55,10 @@ endforeach;
 送料　￥<?= number_format($postage) ?>
 
 
-消費税￥<?= number_format(($sum_all+$postage) * 0.08) ?>
+消費税￥<?= number_format(floor(($sum_all + $postage) * 0.08)) ?>
 
 
-合計　￥<?= number_format(($sum_all+$postage) * 1.08) ?>
+合計　￥<?= number_format(floor(($sum_all + $postage) * 1.08)) ?>
 
 
 -------------------------------------------------------------------------------
