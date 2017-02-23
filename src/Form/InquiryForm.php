@@ -11,7 +11,7 @@ class InquiryForm extends BaseForm {
 	
 	public function __construct() {
 		$this->_tableName = 'inquiries';
-		$this->_mailTemplate = Defines::MAIL_TEMPLATE_INQUIRY_COMPLETE;
+		$this->_mailTemplate = Defines::getTemplateComplete('inquiry');
 	}
 
 	protected function _buildSchema(Schema $schema) {

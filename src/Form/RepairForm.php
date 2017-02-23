@@ -11,7 +11,7 @@ class RepairForm extends BaseForm {
 
 	public function __construct() {
 		$this->_tableName = 'repairs';
-		$this->_mailTemplate = Defines::MAIL_TEMPLATE_REPAIR_COMPLETE;
+		$this->_mailTemplate = Defines::getTemplateComplete('repair');
 	}
 
 	protected function _buildSchema(Schema $schema) {

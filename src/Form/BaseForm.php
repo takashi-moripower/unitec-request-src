@@ -58,6 +58,10 @@ abstract class BaseForm extends Form {
 	protected function _formatAccess( $value ){
 		return implode( "\r\n" , $value );
 	}
+	
+	protected function _unformatAccess( $value ){
+		return explode("\r\n",$value);
+	}
 
 	protected function _execute(array $dataPost) {
 		$table = TableRegistry::get($this->_tableName);

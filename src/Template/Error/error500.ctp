@@ -1,4 +1,9 @@
-
+<?php
+use Cake\Core\Configure;
+if( Configure::read('debug')){
+	echo $this->Element('../Error/error500.old');
+}
+?>
 
 <div class="container">
 	<div class="row">

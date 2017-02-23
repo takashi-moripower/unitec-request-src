@@ -7,17 +7,18 @@ use App\Defines\Defines;
 use Cake\Validation\Validator;
 use Cake\Form\Schema;
 use Cake\ORM\TableRegistry;
+use Cake\Utility\Hash;
 
 class SellForm extends BaseForm {
 
 	protected $_entity;
-	
+
 	public function __construct() {
 		$this->_tableName = 'sells';
-		$this->_mailTemplate = Defines::MAIL_TEMPLATE_SELL_COMPLETE;
+		$this->_mailTemplate = Defines::getTemplateComplete('sell');
 	}
-	
-	public function setEntity( $entity ){
+
+	public function setEntity($entity) {
 		$this->_entity = $entity;
 	}
 
@@ -59,26 +60,26 @@ class SellForm extends BaseForm {
 			'rule' => [$this, 'checkZenkaku'],
 			'message' => '全角文字で入力してください'
 		]);
-		
-		$validator->maxLength('name1',20,'20文字以内で入力してください');
-		
+
+		$validator->maxLength('name1', 20, '20文字以内で入力してください');
+
 		$validator->add('name2', 'custom', [
 			'rule' => [$this, 'checkZenkaku'],
 			'message' => '全角文字で入力してください'
 		]);
-		$validator->maxLength('name2',20,'20文字以内で入力してください');
+		$validator->maxLength('name2', 20, '20文字以内で入力してください');
 
 		$validator->add('kana-name1', 'custom', [
 			'rule' => [$this, 'checkKana'],
 			'message' => '全角カタカナで入力してください'
 		]);
-		$validator->maxLength('kana-name1',20,'20文字以内で入力してください');
-		
+		$validator->maxLength('kana-name1', 20, '20文字以内で入力してください');
+
 		$validator->add('kana-name2', 'custom', [
 			'rule' => [$this, 'checkKana'],
 			'message' => '全角カタカナで入力してください'
 		]);
-		$validator->maxLength('kana-name2',20,'20文字以内で入力してください');
+		$validator->maxLength('kana-name2', 20, '20文字以内で入力してください');
 
 		$validator->notEmpty('access', '連絡手段を選択してください');
 
@@ -91,27 +92,31 @@ class SellForm extends BaseForm {
 			'rule' => [$this, 'checkPost'],
 			'message' => '半角数字のみ　7桁で入力してください'
 		]);
-		
-		$validator->add('address2','custom',[
-			'rule'=>[$this,'checkAddressLength'],
-			'message'=>'住所は合計200文字以内で入力してください'
+
+		$validator->add('address2', 'custom', [
+			'rule' => [$this, 'checkAddressLength'],
+			'message' => '住所は合計200文字以内で入力してください'
 		]);
-		
-		$validator->maxLength('tel',15,'15文字以内で入力してください');
-		$validator->maxLength('fax',15,'15文字以内で入力してください');
-		$validator->maxLength('email',100,'100文字以内で入力してください');
-		$validator->maxLength('content',2000,'2000文字以内で入力してください');
-		
+
+		$validator->maxLength('tel', 15, '15文字以内で入力してください');
+		$validator->maxLength('fax', 15, '15文字以内で入力してください');
+		$validator->maxLength('email', 100, '100文字以内で入力してください');
+		$validator->maxLength('content', 2000, '2000文字以内で入力してください');
+
 
 		return $validator;
 	}
 
 	protected function _getArrayedData($entity, $data) {
 
-		$date = $entity->created->format('Y-m-d h:i:s');
+//		$date = $entity->created->format('Y-m-d h:i:s');
+//		$code = $entity->code;
+
+		$date = null;
+		$code = null;
 
 		$result = [
-			Defines::SELL_DATA_CODE => $entity->code,
+			Defines::SELL_DATA_CODE => $code,
 			Defines::SELL_DATA_DATE => $date,
 			Defines::SELL_DATA_NAME1 => $data['name1'],
 			Defines::SELL_DATA_NAME2 => $data['name2'],
@@ -132,38 +137,61 @@ class SellForm extends BaseForm {
 
 		return $result;
 	}
-	
-	public function readSession( $session ){
-		$data = $session->read('sell.data');
 
-		if( empty($data)){
-			return;
+	public function readSession($session) {
+		$session_data = $session->read('sell.data');
+		if (empty($session_data)) {
+			$session_data = [];
 		}
-		
-		print_r( $data );
+
+		$key_to_read = [
+			'name1' => Defines::SELL_DATA_NAME1,
+			'name2' => Defines::SELL_DATA_NAME2,
+			'kana_name1' => Defines::SELL_DATA_KANA_NAME1,
+			'kana_name2' => Defines::SELL_DATA_KANA_NAME2,
+			'post_code' => Defines::SELL_DATA_POST_CODE,
+			'address1' => Defines::SELL_DATA_ADDRESS1,
+			'address2' => Defines::SELL_DATA_ADDRESS2,
+			'tel' => Defines::SELL_DATA_TEL,
+			'fax' => Defines::SELL_DATA_FAX,
+			'email' => Defines::SELL_DATA_EMAIL,
+			'content' => Defines::SELL_DATA_CONTENT
+		];
+
+		foreach ($key_to_read as $key => $path) {
+			$this->{$key} = Hash::get($session_data, $path);
+		}
+
+		//	accessだけ処理が複雑
+		$session_access = Hash::get($session_data, Defines::SELL_DATA_ACCESS);
+		if (empty($session_access)) {
+			$this->access = Defines::ACCESS_DEFAULT;
+		} else {
+			$this->access = $this->_unformatAccess($session_access);
+		}
 	}
-	
-	protected function _getPostage( $data ){
+
+	protected function _getPostage($data) {
 		$table = TableRegistry::get('postages');
-		
+
 		$result = $table->find()
-				->where(['pref'=>$data['address1']])
+				->where(['pref' => $data['address1']])
 				->first();
-		
-		if( $result ){
+
+		if ($result) {
 			return $result->charge;
 		}
-		
+
 		return 0;
 	}
 
-	protected function _execute( array $data ){
+	protected function _execute(array $data) {
 		$entity = $this->_entity;
-		
-		$result = $this->_getArrayedData( $entity , $data );
+
+		$result = $this->_getArrayedData($entity, $data);
 		return $result;
 	}
-	
+
 	protected function _execute_old(array $data) {
 		$table = TableRegistry::get($this->_tableName);
 		$entity = $table->get($data['id']);

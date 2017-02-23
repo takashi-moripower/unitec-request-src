@@ -39,6 +39,8 @@ class EmailForm extends Form {
 			'rule' => [$this, 'checkMail'],
 			'message' => '入力内容が異なっています'
 		]);
+		
+		$validator->maxLength('email',100,'100文字以内で入力してください');
 
 		return $validator;
 	}

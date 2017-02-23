@@ -45,7 +45,7 @@ class Defines {
 //--------------------------------------------------------------------------------
 //		Email
 //--------------------------------------------------------------------------------
-
+/*
 	const MAIL_TEMPLATE_REPAIR_CHECK = [
 		'template' => 'check',
 		'subject' => '修理受付サービス　本人確認手続き',
@@ -73,7 +73,7 @@ class Defines {
 		'template' => 'sellComplete',
 		'subject' => '部品購入受付サービス　部品購入受付完了',
 	];
-
+*/
 	static function getTemplateCheck($type) {
 
 		$tmp = Configure::read('templates.mail.common.check') + Configure::read('templates.mail.base');

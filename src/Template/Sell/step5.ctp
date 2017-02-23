@@ -23,8 +23,8 @@ $this->Form->templates([
 			</th>
 			<td class="my-form-name">
 				<?php
-				echo $this->Form->input('name1', ['type' => 'text', 'label' => false, 'class' => '' , 'value' => $form->name1]);
-				echo $this->Form->input('name2', ['type' => 'text', 'label' => false, 'class' => '']);
+				echo $this->Form->input('name1', ['type' => 'text', 'label' => false, 'class' => '', 'default' => $form->name1]);
+				echo $this->Form->input('name2', ['type' => 'text', 'label' => false, 'class' => '', 'default' => $form->name2]);
 				?>
 				<span>※ 全角で入力してください。</span>
 			</td>
@@ -35,8 +35,8 @@ $this->Form->templates([
 			</th>
 			<td class="my-form-name">
 				<?php
-				echo $this->Form->input('kana-name1', ['type' => 'text', 'label' => false, 'class' => '']);
-				echo $this->Form->input('kana-name2', ['type' => 'text', 'label' => false, 'class' => '']);
+				echo $this->Form->input('kana-name1', ['type' => 'text', 'label' => false, 'class' => '', 'default' => $form->kana_name1]);
+				echo $this->Form->input('kana-name2', ['type' => 'text', 'label' => false, 'class' => '', 'default' => $form->kana_name2]);
 				?>
 				<span>※ 全角で入力してください。</span>
 			</td>
@@ -46,11 +46,11 @@ $this->Form->templates([
 				ご住所
 			</th>
 			<td class="my-form-address">
-				<div class="post-icon">〒</div><?= $this->Form->input('post-code', ['type' => 'text', 'label' => false, 'class' => 'p-postal-code']); ?>
+				<div class="post-icon">〒</div><?= $this->Form->input('post-code', ['type' => 'text', 'label' => false, 'class' => 'p-postal-code' , 'default'=>$form->post_code]); ?>
 				<span> ※ ハイフンなしの半角数字7桁で入力してください。</span>
 
-				<?= $this->Form->input('address1', ['type' => 'text', 'label' => false, 'class' => 'p-region', 'placeholder' => '都道府県']); ?><br>
-				<?= $this->Form->input('address2', ['type' => 'text', 'label' => false, 'class' => 'p-locality p-street-address p-extended-address', 'placeholder' => '市町村・番地・建物']); ?>
+				<?= $this->Form->input('address1', ['type' => 'text', 'label' => false, 'class' => 'p-region', 'placeholder' => '都道府県' , 'default'=>$form->address1]); ?><br>
+				<?= $this->Form->input('address2', ['type' => 'text', 'label' => false, 'class' => 'p-locality p-street-address p-extended-address', 'placeholder' => '市町村・番地・建物' , 'default'=>$form->address2]); ?>
 			</td>
 		</tr>
 		<tr>
@@ -64,7 +64,7 @@ $this->Form->templates([
 				?>
 				<div class="form-group <?= $access_error ? 'has-error' : '' ?>">
 					<?php
-					echo $this->Form->select('access', $access_types, ['multiple' => 'checkbox', 'default' => Defines::ACCESS_DEFAULT]);
+					echo $this->Form->select('access', $access_types, ['multiple' => 'checkbox', 'default' => $form->access]);
 
 					if ($access_error) {
 						foreach ($form->errors()['access'] as $msg) {
@@ -83,7 +83,7 @@ $this->Form->templates([
 			</th>
 			<td>
 				<?php
-				echo $this->Form->input('email', ['type' => 'email', 'label' => false, 'class' => '',]);
+				echo $this->Form->input('email', ['type' => 'email', 'label' => false, 'class' => '' , 'default'=>$form->email]);
 				?>				
 			</td>
 		</tr>
@@ -93,7 +93,7 @@ $this->Form->templates([
 			</th>
 			<td>
 				<?php
-				echo $this->Form->input('tel', ['type' => 'tel', 'label' => false, 'class' => '']);
+				echo $this->Form->input('tel', ['type' => 'tel', 'label' => false, 'class' => '' , 'default'=>$form->tel]);
 				?>				
 			</td>
 		</tr>
@@ -103,7 +103,7 @@ $this->Form->templates([
 			</th>
 			<td>
 				<?php
-				echo $this->Form->input('fax', ['type' => 'fax', 'label' => false, 'class' => '']);
+				echo $this->Form->input('fax', ['type' => 'fax', 'label' => false, 'class' => '' , 'default'=>$form->fax]);
 				?>				
 			</td>
 		</tr>
@@ -112,7 +112,7 @@ $this->Form->templates([
 				連絡メモ<br>
 			</th>
 			<td>
-				<?= $this->Form->input('content', ['type' => 'textArea', 'placeHolder' => '2000文字以内で入力してください', 'label' => false]); ?>
+				<?= $this->Form->input('content', ['type' => 'textArea', 'placeHolder' => '2000文字以内で入力してください', 'label' => false , 'default'=>$form->content]); ?>
 				<br>
 			</td>
 		</tr>

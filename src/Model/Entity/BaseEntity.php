@@ -48,6 +48,11 @@ class BaseEntity extends Entity {
 					'created <=' => Date::tomorrow(),
 				])
 				->count();
+	
+		$table->query()
+				->delete()
+				->where(['created <' => Date::today()])
+				->execute();
 
 		$this->sereal = $count + 1;
 	}

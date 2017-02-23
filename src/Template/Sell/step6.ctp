@@ -3,6 +3,12 @@
 use App\Defines\Defines;
 
 $access_name = Defines::ACCESS_NAME;
+
+if (!empty($product_page)) {
+	$return_url = ['action' => 'step1', $product_page];
+} else {
+	$return_url = ['action' => 'step0'];
+}
 ?>
 <ul class="my-list1">
 	<li>
@@ -60,6 +66,6 @@ $access_name = Defines::ACCESS_NAME;
 </ul>
 
 <div class="text-center">
-	<a href="<?= $this->Url->build(['action' => 'step0']) ?>" class="my-btn">戻る</a>
+	<a href="<?= $this->Url->build($return_url) ?>" class="my-btn">戻る</a>
 	<a href="<?= $this->Url->build(['action' => 'step7']) ?>" class="my-btn my-btn-primary"　>送信する</a>
 </div>

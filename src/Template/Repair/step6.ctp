@@ -9,5 +9,5 @@
 
 <br>
 <div class="text-center">
-	<a href="<?= $this->Url->build('/') ?>" class="my-btn">戻る</a>
+	<a href="<?= $this->Url->build(['action'=>'step0']) ?>" class="my-btn">戻る</a>
 </div>

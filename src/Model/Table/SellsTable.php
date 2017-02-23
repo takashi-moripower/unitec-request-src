@@ -32,7 +32,7 @@ class SellsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('repairs');
+        $this->table('sells');
         $this->displayField('id');
         $this->primaryKey('id');
 
