@@ -62,7 +62,11 @@ class SellController extends BaseController {
 	public function step4($arg = NULL){}
 	
 	public function step5($arg1=NULL , $arg2 = NULL){
-		$this->set('form',new SellForm);
+		
+		$form = new SellForm();
+		$form->readSession( $this->request->session() );
+		
+		$this->set('form',$form);
 		
 		if( $this->request->is('post')){
 			return $this->_step51();
@@ -70,10 +74,11 @@ class SellController extends BaseController {
 	}
 	
 	protected function _step51(){
-		$entity = $this->_setToken();
+		$table = TableRegistry::get("Sells");
+		$entity = $table->newEntity();
 		
 		$form = new SellForm();
-		$form->setEntity( $entity );
+		$form->setEntity( $entity );		
 		
 		$data = $form->execute( $this->request->data );
 		

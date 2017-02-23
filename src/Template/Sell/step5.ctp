@@ -23,7 +23,7 @@ $this->Form->templates([
 			</th>
 			<td class="my-form-name">
 				<?php
-				echo $this->Form->input('name1', ['type' => 'text', 'label' => false, 'class' => '']);
+				echo $this->Form->input('name1', ['type' => 'text', 'label' => false, 'class' => '' , 'value' => $form->name1]);
 				echo $this->Form->input('name2', ['type' => 'text', 'label' => false, 'class' => '']);
 				?>
 				<span>※ 全角で入力してください。</span>

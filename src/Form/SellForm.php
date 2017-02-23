@@ -133,6 +133,16 @@ class SellForm extends BaseForm {
 		return $result;
 	}
 	
+	public function readSession( $session ){
+		$data = $session->read('sell.data');
+
+		if( empty($data)){
+			return;
+		}
+		
+		print_r( $data );
+	}
+	
 	protected function _getPostage( $data ){
 		$table = TableRegistry::get('postages');
 		

@@ -2,13 +2,14 @@
 
 namespace App\Defines;
 
+use Cake\Core\Configure;
+
 class Defines {
 
 //--------------------------------------------------------------------------------
 //		共通
 //--------------------------------------------------------------------------------
 	const TOKEN_TIME_LIMIT = 30;
-
 	const ACCESS_EMAIL = 1;
 	const ACCESS_TEL = 2;
 	const ACCESS_FAX = 3;
@@ -22,7 +23,6 @@ class Defines {
 		self::ACCESS_TEL => '電話',
 		self::ACCESS_FAX => 'FAX',
 	];
-	
 	const ACCESS_DEFAULT = [
 		self::ACCESS_EMAIL => 1,
 		self::ACCESS_TEL => 0,
@@ -41,87 +41,68 @@ class Defines {
 
 		return implode(',', $access_text);
 	}
-	
 
 //--------------------------------------------------------------------------------
 //		Email
 //--------------------------------------------------------------------------------
-	const MAIL_FROM =  ["info@takagi-plc.jp" => '株式会社　高儀'];
-	const MAIL_SENDER = self::MAIL_FROM;
-	const MAIL_REPLY = "support@takagi-plc.co.jp";
-	
-	const MAIL_TEMPLATE_BASE = [
-		'transport' => 'smtp',
-		'sender' => self::MAIL_SENDER,
-		'from' => self::MAIL_FROM,
-		'replyTo' => self::MAIL_REPLY,
-	];
-	
-	const MAIL_TEMPLATE_CHECK = self::MAIL_TEMPLATE_BASE;
-	
-	const MAIL_TEMPLATE_COMPLETE = self::MAIL_TEMPLATE_BASE + [
-		'bcc' => 'support@takagi-plc.co.jp',
-//		複数のBCCを登録する場合は　[]で囲み　, で区切る
-//		'bcc'=>['tsukasa@moripower.jp','takashi@moripower.jp'],
-	];
-	
-	const MAIL_TEMPLATE_REPAIR_CHECK = self::MAIL_TEMPLATE_CHECK + [
+
+	const MAIL_TEMPLATE_REPAIR_CHECK = [
 		'template' => 'check',
 		'subject' => '修理受付サービス　本人確認手続き',
 		'service' => '修理受付',
 	];
-	
-	const MAIL_TEMPLATE_REPAIR_COMPLETE = self::MAIL_TEMPLATE_COMPLETE + [
+	const MAIL_TEMPLATE_REPAIR_COMPLETE = [
 		'template' => 'repairComplete',
 		'subject' => '修理受付サービス　修理受付完了',
 	];
-	
-	const MAIL_TEMPLATE_INQUIRY_CHECK = self::MAIL_TEMPLATE_CHECK + [
+	const MAIL_TEMPLATE_INQUIRY_CHECK = [
 		'template' => 'check',
 		'subject' => 'お問合せ受付サービス　本人確認手続き',
 		'service' => 'お問合せ受付',
 	];
-	
-	const MAIL_TEMPLATE_INQUIRY_COMPLETE = self::MAIL_TEMPLATE_COMPLETE + [
+	const MAIL_TEMPLATE_INQUIRY_COMPLETE = [
 		'template' => 'inquiryComplete',
 		'subject' => 'お問合せ受付サービス　お問合せ受付完了',
 	];
-	
-	const MAIL_TEMPLATE_SELL_CHECK = self::MAIL_TEMPLATE_CHECK + [
+	const MAIL_TEMPLATE_SELL_CHECK = [
 		'template' => 'check',
 		'subject' => '部品購入受付サービス　本人確認手続き',
 		'service' => '部品購入受付',
 	];
-	
-	const MAIL_TEMPLATE_SELL_COMPLETE = self::MAIL_TEMPLATE_COMPLETE + [
+	const MAIL_TEMPLATE_SELL_COMPLETE = [
 		'template' => 'sellComplete',
 		'subject' => '部品購入受付サービス　部品購入受付完了',
 	];
 
 	static function getTemplateCheck($type) {
 
+		$tmp = Configure::read('templates.mail.common.check') + Configure::read('templates.mail.base');
+
 		switch ($type) {
 			case 'repair':
-				return self::MAIL_TEMPLATE_REPAIR_CHECK;
+				return Configure::read('templates.mail.repair.check') + $tmp;
 
 			case 'inquiry':
-				return self::MAIL_TEMPLATE_INQUIRY_CHECK;
+				return Configure::read('templates.mail.inquiry.check') + $tmp;
 
 			case 'sell':
-				return self::MAIL_TEMPLATE_SELL_CHECK;
+				return Configure::read('templates.mail.sell.check') + $tmp;
 		}
 	}
-	
-	static function getTemplateComplete($type){
-		switch($type){
+
+	static function getTemplateComplete($type) {
+
+		$tmp = Configure::read('templates.mail.common.complete') + Configure::read('templates.mail.base');
+
+		switch ($type) {
 			case 'repair':
-				return self::MAIL_TEMPLATE_REPAIR_COMPLETE;
-				
+				return Configure::read('templates.mail.repair.complete') + $tmp;
+
 			case 'inquiry':
-				return self::MAIL_TEMPLATE_INQUIRY_COMPLETE;
-				
+				return Configure::read('templates.mail.inquiry.complete') + $tmp;
+
 			case 'sell':
-				return self::MAIL_TEMPLATE_SELL_COMPLETE;
+				return Configure::read('templates.mail.sell.complete') + $tmp;
 		}
 	}
 
@@ -173,7 +154,6 @@ class Defines {
 			'explain' => '以上で、申込み手続き完了となります',
 		],
 	];
-	
 	const REPAIR_DATA_CODE = 0;
 	const REPAIR_DATA_DATE = 1;
 	const REPAIR_DATA_NAME1 = 2;
@@ -191,7 +171,6 @@ class Defines {
 	const REPAIR_DATA_BUY_ERA = 14;
 	const REPAIR_DATA_BUY_YEAR = 15;
 	const REPAIR_DATA_BUY_MONTH = 16;
-	
 //--------------------------------------------------------------------------------
 //		問合せ
 //--------------------------------------------------------------------------------
@@ -203,7 +182,6 @@ class Defines {
 	const INQUIRY_PROGRESS_EMAIL_SENDING = 4;
 	const INQUIRY_PROGRESS_DATA_INPUT = 5;
 	const INQUIRY_PROGRESS_END = 6;
-	
 	const INQUIRY_PROGRESS = [
 		self::INQUIRY_PROGRESS_STEP_INFO => [
 			'label' => '申し込み手続きの確認',
@@ -241,7 +219,6 @@ class Defines {
 			'explain' => '以上で、申込み手続き完了となります',
 		],
 	];
-	
 	const INQUIRY_DATA_CODE = 0;
 	const INQUIRY_DATA_DATE = 1;
 	const INQUIRY_DATA_NAME1 = 2;
@@ -266,12 +243,10 @@ class Defines {
 		3 => 'キッチン用品に関するお問い合わせ',
 		4 => 'その他のお問い合わせ',
 	];
-
 //--------------------------------------------------------------------------------
 //		部品販売
 //--------------------------------------------------------------------------------
 	const SELL_PREFIX = 'HB';
-
 	const SELL_PROGRESS_SELECT_PRODUCT = 0;
 	const SELL_PROGRESS_SELECT_PARTS = 1;
 	const SELL_PROGRESS_STEP_INFO = 2;
@@ -280,7 +255,6 @@ class Defines {
 	const SELL_PROGRESS_DATA_INPUT = 5;
 	const SELL_PROGRESS_DATA_CHECK = 6;
 	const SELL_PROGRESS_END = 7;
-
 	const SELL_PROGRESS = [
 		self::SELL_PROGRESS_SELECT_PRODUCT => [
 			'label' => '商品選択',
@@ -322,7 +296,6 @@ class Defines {
 			'icon' => 'check-circle',
 			'explain' => '以上で、申込み手続き完了となります',
 		],
-		
 	];
 	const SELL_DATA_CODE = 0;
 	const SELL_DATA_DATE = 1;
