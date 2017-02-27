@@ -114,6 +114,10 @@ class SellController extends BaseController {
 		$data = $this->request->session()->read('sell.data');
 		$product_page = $this->request->session()->read('sell.product_page');
 
+		if (empty( $parts) || empty($data)) {
+			return $this->render('step5_error');
+		}
+		
 		$this->set('parts', $parts);
 		$this->set('data', $data);
 		$this->set('product_page', $product_page);
