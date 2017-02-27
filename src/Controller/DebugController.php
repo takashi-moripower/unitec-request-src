@@ -9,13 +9,13 @@ use Cake\I18n\Date;
 class DebugController extends AppController {
 
 	public function index() {
-		$table = TableRegistry::get('sells');
-
-		$table->query()
-				->delete()
-				->where(['created <' => Date::today()])
-				->execute();
-		$data = 1;
+		
+		$data = [
+			Date::today(),
+			Date::tomorrow(),
+			Date::yesterday(),
+		];
+		
 		$this->set('data', $data);
 		$this->render('/Common/debug');
 	}
