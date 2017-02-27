@@ -5,6 +5,7 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 use Cake\ORM\TableRegistry;
 use Cake\I18n\Date;
+use Cake\I18n\Time;
 
 /**
  * Repair Entity
@@ -41,6 +42,8 @@ class BaseEntity extends Entity {
 	
 	public function setSereal() {
 		$table = TableRegistry::get( $this->source() );
+		
+		$date = $table->newEntity()->created;
 
 		$count = $table->find()
 				->where([
