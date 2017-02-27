@@ -120,7 +120,9 @@ class SellController extends BaseController {
 	}
 
 	public function step7() {
-		$this->_save();
+		if (!$this->_save()) {
+			return $this->render('step5_error');
+		}
 
 		$data = $this->request->session()->read('sell.data');
 		$code = $data[Defines::SELL_DATA_CODE];
@@ -133,10 +135,18 @@ class SellController extends BaseController {
 		$data = $this->request->session()->read('sell.data');
 		$parts = $this->request->session()->read('sell.parts');
 
+		if( empty( $data ) || empty($parts)){
+			return false;
+		}
+
+
 		$entity = $this->_setToken();
 		$code = $entity->code;
+		$date = $entity->created->format('Y-m-d h:i:s');
+
 
 		$data[Defines::SELL_DATA_CODE] = $code;
+		$data[Defines::SELL_DATA_DATE] = $date;
 
 		foreach ($parts as &$part) {
 			//	パーツデータの先頭に注文コードを付与
@@ -148,8 +158,10 @@ class SellController extends BaseController {
 		$this->_saveParts($data, $parts);
 
 		$this->_postComplete($data, $parts);
+
+		$this->request->session()->write('sell.data', $data);
 		
-		$data = $this->request->session()->write('sell.data',$data);
+		return true;
 	}
 
 	/**
