@@ -14,7 +14,7 @@ if( Configure::read('debug')){
 				サーバーがエラーを検出したため、実行することができませんでした。<br>
 				しばらく時間をおいてからもう一度アクセスして頂くか、管理者にお問い合わせください。<br>
 				<br>
-				E-MAIL：<a href="mailto:support@takagi-plc.co.jp">support@takagi-plc.co.jp</a>
+				<img src="<?= $this->Url->build('/img/email.png') ?>" class="email-img">
 			</p>
 		</div>
 	</div>
